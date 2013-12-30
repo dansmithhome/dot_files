@@ -66,7 +66,7 @@ esac
 
 if [ -f ~/bin/keychain ]
 then
-    eval $(~/bin/keychain --eval --agents ssh --quiet carc-git github-dansmithhome id_dsa aws)
+    eval $(~/bin/keychain --eval --agents ssh --quiet carc-git github-dansmithhome id_dsa )
     ssh-add -l > /dev/null || ssh-add
 fi
 
