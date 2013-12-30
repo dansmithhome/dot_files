@@ -42,62 +42,34 @@ case `hostname -s` in
        H='bosco'
        ;;
 
-    new-dev)  # New Development
-	   H='new-dev'
+    dev|askalexander|conjuringarts) 
+       if [[ $(hostname -s) = 'dev' ]]
+       then
+    	   H='dev'
+       else
+           H='carc'
+       fi
+
        export ALEX_LIB=/mnt/www/sites/alex/lib
        export DEV_HELPERS_FILE=~/.bashrc-alex-helpers
 	   export EC2_HOME=~/ec2-api-tools-1.3-36506
 	   export EC2_PRIVATE_KEY=~/.ec2/pk-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
 	   export EC2_CERT=~/.ec2/cert-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
-	   append-to-path $EC2_HOME/bin
-       if [ -e ~/ImageMagick-6.4.8 ] 
-       then
-           export MAGICK_HOME=~/ImageMagick-6.4.8/
-           export DYLD_LIBRARY_PATH=~/ImageMagick-6.4.8//lib
-           append-to-path ~/ImageMagick-6.4.8/bin
-       fi
-       if [ -f /usr/bin/keychain ]
-       then
-           eval `/usr/bin/keychain --eval --agents ssh --quiet`
-           ssh-add -l > /dev/null || ssh-add
-       fi
+	   append-to-path ${EC2_HOME}/bin
 	   ;;
 
-    alex-dev|domU-12-31-39-13-D6-62)  # Development
-	   H='dev'
-       export ALEX_LIB=/mnt/www/sites/alex/lib
-       export DEV_HELPERS_FILE=~/.bashrc-alex-helpers
-	   export EC2_HOME=~/ec2-api-tools-1.3-36506
-	   export EC2_PRIVATE_KEY=~/.ec2/pk-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
-	   export EC2_CERT=~/.ec2/cert-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
-	   append-to-path $EC2_HOME/bin
-
-       if [ -f /usr/bin/keychain ]
-       then
-           eval `/usr/bin/keychain --eval --agents ssh --quiet`
-           ssh-add -l > /dev/null || ssh-add
-       fi
-	   ;;
-
-    askalexander|conjuringarts)   # Production
-       H='carc'
-       export ALEX_LIB=/mnt/www/sites/alex/lib
-       export DEV_HELPERS_FILE=~/.bashrc-alex-helpers
-	   export EC2_HOME=~/ec2-api-tools-1.3-36506
-	   export EC2_PRIVATE_KEY=~/.ec2/pk-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
-	   export EC2_CERT=~/.ec2/cert-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem	   
-       append-to-path "${EC2_HOME}/bin"
-
-       if [ -f /usr/bin/keychain ]
-       then
-           eval `/usr/bin/keychain --eval --agents ssh --quiet`
-           ssh-add -l > /dev/null || ssh-add
-       fi
-	   ;;
     *)
-      echo no match
+      echo .bash_profile: Unknown host. Cannot initialize host environment.
        ;;
 esac
+
+
+if [ -f ~/bin/keychain ]
+then
+    eval $(~/bin/keychain --eval --agents ssh --quiet carc-git github-dansmithhome id_dsa aws)
+    ssh-add -l > /dev/null || ssh-add
+fi
+
 
 source-if-exists ${BASH_ENV}
 source-if-exists ${DEV_HELPERS_FILE}
