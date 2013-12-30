@@ -1,6 +1,14 @@
 if [[ ${PS1} ]]
 then
 
+   function build-tags(){
+        ( cd $ALEX_SITE_DIR; etags --output $ALEX_SITE_DIR/TAGS $(find . -name \*.pm -o -name \*.js) )
+    }
+
+    function tickets(){
+             curl 2> /dev/null  -#LG "http://askalexander.org:8800/alex/report/8?format=csv"  | awk -F, 'NR > 1 {printf "%-3.3s %9.9s %s\n",$3,$9,$4}' |sort -n 
+    }
+
     function go(){
         local NEWSITE=$( echo "${1}" | sed 's;/.*;;' )
 
@@ -13,10 +21,9 @@ then
 
         if [[ -n ${SITE}   ]]
         then
-             CDPATH=$( echo "${CDPATH}" | sed "s;/mnt/www/sites/${SITE};/mnt/www/sites/${NEWSITE};g" )
-        else
-             CDPATH="${CDPATH}:/mnt/www/sites/${NEWSITE}:/mnt/www/sites/${NEWSITE}/lib/Alex2"
+             CDPATH=$( echo "${CDPATH}" | sed -e "s;[:]*/mnt/www/sites/${SITE}/lib/Alex;;g" -e "s;[:]*/mnt/www/sites/${SITE};;g"  )
         fi
+        CDPATH="${CDPATH}:/mnt/www/sites/${NEWSITE}:/mnt/www/sites/${NEWSITE}/lib/Alex"
         export SITE="${NEWSITE}"
         export ALEX_SITE_DIR="/mnt/www/sites/${NEWSITE}"
         export ALEX_LIB="${ALEX_SITE_DIR}/lib"
@@ -94,7 +101,7 @@ then
         
         if [[ ${SITE} ]]
         then
-                sudo /usr/bin/find "/mnt/www/sites/${SITE}" \( -type d ${FIND_EXCL_PATTERN}  \) -o -type f ! -name \*~ -print0 |  sudo xargs -0 grep  -IH --color  ${GREP_ARGS}  "${*}" 
+                sudo /usr/bin/find "/mnt/www/sites/${SITE}" \( -type d ${FIND_EXCL_PATTERN}  \) -o -type f ! -name \*~ ! -name \*.min.js -print0 |  sudo xargs -0 grep  -IH --color  ${GREP_ARGS}  "\\b${*}\\b" 
         else
                 echo '${SITE} should be set using go command.'  1>&2
         fi
@@ -136,7 +143,7 @@ then
 	    else
 	        LNAME=`basename ${1}`
 	    fi		
-	    curl -LG "${1}" > "$L{NAME}"
+	    curl -LG "${1}" > "${LNAME}"
     }
 
 
@@ -145,6 +152,7 @@ then
     #        htlog -f      - tail -f
     #        htlog -h name - log for host
     #        htlog -a      - access log rather than error log
+    #        htlog -q      - do not show any preceeding context, implies -f
 
     function htlog()
     {
@@ -155,7 +163,7 @@ then
 	local FILE
 	local LINES=20
 
-	OPTS=$(getopt fh:s:an: "$@")
+	OPTS=$(getopt qfh:s:an: "$@")
 	if [[ $? -ne 0 ]]
 	then
 	    return
@@ -168,6 +176,9 @@ then
 
 	    case "${1}" in
 		-f) TAIL_ARGS=-f;;
+        -q) TAIL_ARGS=-f
+            LINES=0
+            ;;
 		-h|-s) SITENAME=${2}; shift;;
 		-a) PREFIX=access_log;;
 		-n) LINES=${2}; shift;;
