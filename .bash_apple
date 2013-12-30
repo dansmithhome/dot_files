@@ -1,0 +1,28 @@
+   pman(){
+       man -t $@ | open -f -a /Applications/Preview.app
+   }
+
+   tman(){
+       MANWIDTH=160 MANPAGE='col -bx' man $@ | mate
+   }
+
+   quit() {
+       for app in $*
+       do
+           osascript -e "quit app \"$app\""
+       done
+   }
+
+   terminal_title(){
+       local t="$*"
+       # [[ -n $t ]] && t=" - $t"
+       [[ -z $t ]] && t=`hostname`
+       echo -n -e "\033]0;$t\007"
+   }
+
+   ssh() {
+       terminal_title "ssh $*"
+       command ssh $*
+       terminal_title
+   }
+

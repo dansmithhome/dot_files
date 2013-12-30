@@ -24,7 +24,10 @@ then
    alias more=less
 
    [[ -e "$DEV_HELPERS_FILE" ]] && source "$DEV_HELPERS_FILE"
+
    [[ -e ~/.git-completions.bash ]] && source ~/.git-completions.bash 
+
+   [[ `uname -s` = 'Darwin' ]] && source ~/.bash_apple
 
 fi
 
