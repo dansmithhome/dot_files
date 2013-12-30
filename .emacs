@@ -24,14 +24,14 @@
 
 (put 'narrow-to-region 'disabled nil)
 (autoload 'tt-mode "tt-mode")
+(autoload 'ruby-mode "ruby-mode")
+(autoload 'haml-mode "haml-mode")
 (setq-default indent-tabs-mode nil)
+(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t) (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
 (autoload 'apache-mode "apache-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
 (add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
-
-
-
 
 (defun sort-words (reverse beg end)
   "Sort words in region alphabetically, in REVERSE if negative.
@@ -56,6 +56,13 @@
 	  (cons '("\\.tt$" . tt-mode) auto-mode-alist))
 (setq auto-mode-alist 
 	  (cons '("\\.html$" . html-mode) auto-mode-alist))
+(setq explicit-shell-file-name "/bin/bash")
+(setq explicit-bash-args '("--login" "--noediting"))
+(setq auto-mode-alist 
+	  (cons '("\\.rb$" .   ruby-mode) auto-mode-alist))
+(setq auto-mode-alist 
+	  (cons '("\\.haml$" . haml-mode) auto-mode-alist))
+
 (setq explicit-shell-file-name "/bin/bash")
 (setq explicit-bash-args '("--login" "--noediting"))
 
@@ -83,6 +90,23 @@
   ;; If there is more than one, they won't work right.
  )
 
+(put 'downcase-region 'disabled nil)
+
+ (defun writeroom ()
+  "Switches to a WriteRoom-like fullscreen style"
+  (interactive)	
+  (when (featurep 'aquamacs)
+    ;; switch to white on black
+    (color-theme-initialize)
+    (color-theme-clarity)
+    ;; switch to Garamond 36pt
+    (aquamacs-autoface-mode 0)
+    (set-frame-font "-apple-garamond-medium-r-normal--36-360-72-72-m-360-iso10646-1")
+    ;; switch to fullscreen mode
+    (aquamacs-toggle-full-frame)))
+    
+(when (featurep 'aquamacs)
+  (setq initial-frame-alist '((background-color . "green") (left . 50)  )))
 
 
 ;; Set default TAGS to $ALEX_SITE_DIR/TAGS
