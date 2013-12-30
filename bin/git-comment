@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+
+
+if($#ARGV == -1){
+    $output= `git branch`;
+
+    foreach my $line (split(/^/, $output)) {
+        my ($is_current, $name) = split(/\s+/, $line);
+        my $description = `git config branch.$name.description`;
+
+        $description =~ s/\s+$//;
+        printf("%1s %-22s %s\n", $is_current, $name, $description);
+    }
+} elsif($#ARGV == 0){
+    my $branch = `git rev-parse --abbrev-ref HEAD`;
+    chop $branch;
+    print $branch;
+    system(qq{ git config branch.$branch.description '$ARGV[0]' } );
+} elsif($#ARGV == 1){
+    system(qq{ git config 'branch.$ARGV[0].description' '$ARGV[1]' });
+} elsif($#ARGV == 2){
+    if($ARGV[0] eq '--branch'){
+        system(qq{ git config 'branch.$ARGV[1].description' '$ARGV[2]' });
+    } else {
+        die 'Invalid option';
+    }
+} else {
+        die 'Invalid option';
+    }
+
+
+
