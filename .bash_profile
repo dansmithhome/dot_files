@@ -9,7 +9,7 @@ export HISTSIZE=10000
 export HOST=$(hostname -s)
 export LESS='--quit-if-one-screen --ignore-case --quiet --quit-at-eof --dumb --tilde --no-init --RAW-CONTROL-CHARS'
 export LSCOLORS=exfxcxdxbxegedabagexex
-export PATH; PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH; PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export VISUAL=emacs
 
 
