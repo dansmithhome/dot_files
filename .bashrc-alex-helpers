@@ -1,7 +1,7 @@
 if [[ ${PS1} ]]
 then
 
-   function build-tags(){
+   function alex-tags(){
         ( cd $ALEX_SITE_DIR; etags --output $ALEX_SITE_DIR/TAGS $(find . -name \*.pm -o -name \*.js) )
     }
 
@@ -23,7 +23,7 @@ then
         then
              CDPATH=$( echo "${CDPATH}" | sed -e "s;[:]*/mnt/www/sites/${SITE}/lib/Alex;;g" -e "s;[:]*/mnt/www/sites/${SITE};;g"  )
         fi
-        CDPATH="${CDPATH}:/mnt/www/sites/${NEWSITE}:/mnt/www/sites/${NEWSITE}/lib/Alex"
+        CDPATH="${CDPATH}:/mnt/www/sites/${NEWSITE}:/mnt/www/sites/${NEWSITE}/lib/Alex:/mnt/www/sites/${NEWSITE}/htdocs"
         export SITE="${NEWSITE}"
         export ALEX_SITE_DIR="/mnt/www/sites/${NEWSITE}"
         export ALEX_LIB="${ALEX_SITE_DIR}/lib"
@@ -47,7 +47,7 @@ then
     # Convert a directory id (DID) to a directory location for a PDF
     function pdfdir(){
         local DID=${1}
-        local PDFROOT=/data/alex/pdf
+        local PDFROOT=/mnt/alex/pdf
 
         echo ${PDFROOT}$(printf "%X\n" ${DID} | rev | sed -e 's;\(.\);/\1;g')/pdf
     }
@@ -56,7 +56,7 @@ then
     # Convert a directory id (DID) to a directory location for an image
     function imgdir(){
         local DID=${1}
-        local IMGROOT=/data/alex/img
+        local IMGROOT=/mnt/alex/img
 
         echo ${IMGROOT}$(printf "%X\n" ${DID} | rev | sed -e 's;\(.\);/\1;g')
     }
@@ -64,6 +64,11 @@ then
     # Edit the httpd.conf file
     function httpd.conf(){
         command sudo emacs /etc/httpd/conf/httpd.conf
+    }
+
+    # Edit the httpd.conf file
+    function nginx.conf(){
+        command sudo emacs /etc/nginx/nginx.conf
     }
 
 

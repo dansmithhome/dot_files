@@ -68,6 +68,7 @@
 
 (put 'upcase-region 'disabled nil)
 (global-set-key "\C-\\" 'advertised-undo)
+(global-set-key "\M-o"  'occur)
 (global-set-key "\C-x*" 'comment-region)
 (global-set-key "\C-xw" 'compare-windows)
 (setq-default compare-ignore-whitespace t)
