@@ -38,7 +38,7 @@ append-to-path  /usr/local/heroku/bin
 export H="UNKNOWN-HOST"
 
 case `hostname -s` in
-    Bosco)   # laptop
+    Bosco|dan-macbook-pro)   # laptop
        H='bosco'
        ;;
 
