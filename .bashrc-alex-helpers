@@ -23,7 +23,7 @@ then
         then
              CDPATH=$( echo "${CDPATH}" | sed -e "s;[:]*/mnt/www/sites/${SITE}/lib/Alex;;g" -e "s;[:]*/mnt/www/sites/${SITE};;g"  )
         fi
-        CDPATH="${CDPATH}:/mnt/www/sites/${NEWSITE}:/mnt/www/sites/${NEWSITE}/lib/Alex"
+        CDPATH="${CDPATH}:/mnt/www/sites/${NEWSITE}:/mnt/www/sites/${NEWSITE}/lib/Alex:/mnt/www/sites/${NEWSITE}/htdocs"
         export SITE="${NEWSITE}"
         export ALEX_SITE_DIR="/mnt/www/sites/${NEWSITE}"
         export ALEX_LIB="${ALEX_SITE_DIR}/lib"
