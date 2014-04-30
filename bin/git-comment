@@ -2,7 +2,7 @@
 
 
 if($#ARGV == -1){
-    $output= `git branch`;
+    $output= `git branch -a | sed -e 's;remotes/origin/;;' -e /HEAD/d -e 's/^* /  /' | sort -bu`;
 
     foreach my $line (split(/^/, $output)) {
         my ($is_current, $name) = split(/\s+/, $line);
