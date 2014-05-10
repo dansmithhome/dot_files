@@ -84,6 +84,12 @@ then
     # Find where alexuse references the given string.  Ignores binary files, 3rd party sources, and other noise.
 
     function alexuse() {
+             ack $* ${ALEX_SITE_DIR}
+    }
+
+
+
+    function o-alexuse() {
         local EXCLUDE_DIRS=".git tmpl_compiled OUTDATED sphinx cache curl GeoIP wiki phpBB3"
         local FIND_EXCL_PATTERN=
         local f
