@@ -38,6 +38,10 @@ append-to-path  /usr/local/heroku/bin
 export H="UNKNOWN-HOST"
 
 case `hostname -s` in
+    dans-mbp)  # PKI laptop
+	H='higgins'
+	;;
+
     Bosco|dan-macbook-pro)   # laptop
        H='bosco'
        ;;
