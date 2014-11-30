@@ -1,8 +1,19 @@
-(setq load-path (append load-path (list "~/elisp")))
+(setq load-path (append load-path (list "~/elisp" "~/elisp/themes") ))
 (setq inhibit-startup-message t)
 (setq default-tab-width 4)
 (setq column-number-mode t)
 (menu-bar-mode)
+
+
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-hober)))
+
+
+
+
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -84,7 +95,7 @@
 (global-set-key "\C-xw" 'compare-windows)
 (setq-default compare-ignore-whitespace t)
 
-(global-font-lock-mode nil)
+(global-font-lock-mode t)
 
 (add-hook 'cperl-mode-hook 'n-cperl-mode-hook t)
 (defun n-cperl-mode-hook ()
