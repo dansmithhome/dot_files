@@ -1,0 +1,4 @@
+function mvn ()
+{
+    command mvn -f ${PROJECT_DIR}/pom.xml  $*
+}

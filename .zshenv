@@ -16,6 +16,13 @@ export M2_HOME;    M2_HOME=/usr/local/apache-maven/apache-maven-3.2.3
 export M2;         M2=${M2_HOME}/bin
 export MAVEN_OPTS; MAVEN_OPTS=
 
+fpath=(~/.zfuncs $fpath)
+autoload -U go mvn sql 
+
+# enable git completions
+autoload -U compinit && compinit
+
+
 PATH=$PATH:$M2
 
 function precmd
@@ -25,27 +32,6 @@ function precmd
 }
 
 
-function go ()
-{
-    local project=$1
-
-    if [[ ${project} == "" ]]
-    then 
-        echo ${PROJECT:-none}
-        return
-    fi
-
-    if [[ -d ~/dev/$PROJECT ]]
-    then 
-        PROJECT=${1}
-        PROJECT_DIR=~/dev/${PROJECT}
-    fi
-}
-
-function mvn ()
-{
-    command mvn -f ${PROJECT_DIR}/pom.xml  $*
-}
 
 
 

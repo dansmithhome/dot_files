@@ -13,25 +13,25 @@
 
 
 
+;; (custom-set-faces
+;;   ;; custom-set-faces was added by Custom.
+;;   ;; If you edit it by hand, you could mess it up, so be careful.
+;;   ;; Your init file should contain only one such instance.
+;;   ;; If there is more than one, they won't work right.
+;;  '(font-lock-builtin-face ((((class color) (min-colors 8)) (:foreground "blue"))))
+;;  '(font-lock-comment-delimiter-face ((default (:inherit font-lock-comment-face)) (((class color) (min-colors 8) (background light)) nil)))
+;;  '(font-lock-comment-face ((((class color) (min-colors 8) (background light)) (:foreground "black"))))
+;;  '(font-lock-constant-face ((((class color) (min-colors 8)) nil)))
+;;  '(font-lock-function-name-face ((((class color) (min-colors 8)) (:foreground "blue"))))
+;;  '(font-lock-keyword-face ((((class color) (min-colors 8)) (:foreground "black"))))
+;;  '(font-lock-preprocessor-face ((t nil)))
+;;  '(font-lock-string-face ((((class color) (min-colors 8)) (:foreground "green"))))
+;;  '(font-lock-type-face ((((class color) (min-colors 8)) nil)))
+;;  '(font-lock-variable-name-face ((((class color) (min-colors 8)) nil)))
+;;  '(font-lock-warning-face ((((class color) (min-colors 8)) (:foreground "black"))))
+;;  '(link ((((class color) (background light)) (:foreground "cyan" :underline t))))
+;;  '(minibuffer-prompt ((t nil))))
 
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(font-lock-builtin-face ((((class color) (min-colors 8)) (:foreground "blue"))))
- '(font-lock-comment-delimiter-face ((default (:inherit font-lock-comment-face)) (((class color) (min-colors 8) (background light)) nil)))
- '(font-lock-comment-face ((((class color) (min-colors 8) (background light)) (:foreground "black"))))
- '(font-lock-constant-face ((((class color) (min-colors 8)) nil)))
- '(font-lock-function-name-face ((((class color) (min-colors 8)) (:foreground "blue"))))
- '(font-lock-keyword-face ((((class color) (min-colors 8)) (:foreground "black"))))
- '(font-lock-preprocessor-face ((t nil)))
- '(font-lock-string-face ((((class color) (min-colors 8)) (:foreground "green"))))
- '(font-lock-type-face ((((class color) (min-colors 8)) nil)))
- '(font-lock-variable-name-face ((((class color) (min-colors 8)) nil)))
- '(font-lock-warning-face ((((class color) (min-colors 8)) (:foreground "black"))))
- '(link ((((class color) (background light)) (:foreground "cyan" :underline t))))
- '(minibuffer-prompt ((t nil))))
 
 (put 'narrow-to-region 'disabled nil)
 (autoload 'tt-mode "tt-mode")

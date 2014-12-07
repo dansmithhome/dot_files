@@ -1,0 +1,16 @@
+function go ()
+{
+    local project=$1
+
+    if [[ ${project} == "" ]]
+    then 
+        echo ${PROJECT:-none}
+        return
+    fi
+
+    if [[ -d ~/dev/$PROJECT ]]
+    then 
+        PROJECT=${1}
+        PROJECT_DIR=~/dev/${PROJECT}
+    fi
+}

@@ -1,0 +1,14 @@
+function sql()
+{
+    local db=Measurements
+
+    if [[ $1 = -d ]]
+    then
+        db=$2
+        shift
+        shift
+    fi
+
+    mysql -e "$*"  ${db}
+}
+
