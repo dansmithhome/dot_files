@@ -1,5 +1,5 @@
 export BASH_ENV=~/.bashrc
-export CDPATH=.:~:..:~/dev
+export CDPATH=.:~:..:~/src
 export DEV_HELPERS_FILE=
 export CLICOLOR=1
 export EDITOR=emacs
@@ -28,10 +28,10 @@ function go ()
         return
     fi
 
-    if [[ -d ~/dev/$PROJECT ]]
+    if [[ -d ~/src/$PROJECT ]]
     then 
         PROJECT=${1}
-        PROJECT_DIR=~/dev/${PROJECT}
+        PROJECT_DIR=~/src/${PROJECT}
     fi
 }
 

@@ -1,16 +1,30 @@
+# Usage: go [project]
+#        go [directory]
+# 
+
+
+
 function go ()
 {
     local project=$1
 
-    if [[ ${project} == "" ]]
+    if [[ ${project} == '' ]]
     then 
-        echo ${PROJECT:-none}
-        return
+         if [[ ${PROJECT_DIR} == '' ]]
+         then
+                echo 'Project not defined.  Usage: go [project]'
+                return
+         fi
+         cd ${PROJECT_DIR}
+         return
     fi
 
-    if [[ -d ~/dev/$PROJECT ]]
+    if [[ -d ~/src/${project} ]]
     then 
-        PROJECT=${1}
-        PROJECT_DIR=~/dev/${PROJECT}
+        # TODO: Remove any remnants of current project from path, cdpath
+        export PROJECT_DIR; PROJECT_DIR=~/src/${project}
+        cdpath+=(${PROJECT_DIR} ${PROJECT_DIR}/src)
+    else 
+        cd ${PROJECT_DIR}/$1
     fi
 }

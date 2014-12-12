@@ -1,4 +1,4 @@
-export CDPATH=.:~:..:~/dev
+export CDPATH=.:~:..:~/src
 export DEV_HELPERS_FILE=
 export CLICOLOR=1
 export EDITOR=emacs
