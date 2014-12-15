@@ -8,8 +8,23 @@ Desktop.ini
 # Thumbnail cache files
 ._*
 Thumbs.db
+\#*
 
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
 
+
+
+
+
+
+.bash_history
+.git-completions.bash
+.gitconfig
+.m2
+.my.cnf
+.mysql_history
+.ssh
+.zhistory
+.zshrc
