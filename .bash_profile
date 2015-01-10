@@ -11,7 +11,7 @@ export LSCOLORS=exfxcxdxbxegedabagexex
 export PATH; PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export VISUAL=emacs
 
-export JAVA_HOME;  JAVA_HOME=$(/usr/libexec/java_home --task CommandLine)
+export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home  && /usr/libexec/java_home --task CommandLine)
 export M2_HOME;    M2_HOME=/usr/local/apache-maven/apache-maven-3.2.3
 export M2;         M2=${M2_HOME}/bin
 export MAVEN_OPTS; MAVEN_OPTS=
