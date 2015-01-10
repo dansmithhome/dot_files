@@ -3,8 +3,11 @@
 #
 
 case `hostname -s` in
+    dv)  # dataverse host
+        ;;
+
     Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
-	;;
+	    ;;
 
     Bosco|dan-macbook-pro)   # laptop
        ;;

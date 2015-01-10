@@ -10,7 +10,7 @@ export HOST=$(hostname -s)
 export LESS='--quit-if-one-screen --ignore-case --quiet --quit-at-eof --dumb --tilde --no-init --RAW-CONTROL-CHARS'
 export LSCOLORS=exfxcxdxbxegedabagexex
 export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-export SAVEHIST=${HISTSIZE}
+export SAVEHIST=9999999
 export VISUAL=emacs
 
 export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine)
@@ -66,4 +66,3 @@ fi
 # source-if-exists ${BASH_ENV}
 source-if-exists ${DEV_HELPERS_FILE}
 source-if-exists ~/.rvm/scripts/rvm
-
