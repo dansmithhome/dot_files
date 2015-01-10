@@ -3,8 +3,11 @@
 #
 
 case `hostname -s` in
+    dv)  # dataverse host
+        ;;
+
     Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
-	;;
+	    ;;
 
     Bosco|dan-macbook-pro)   # laptop
        ;;
@@ -19,7 +22,7 @@ case `hostname -s` in
 	   ;;
 
     *)
-      echo .zshenv: Unknown host. Cannot initialize host environment.
+      echo .zshenv: Unknown host. Cannot customize host environment.
        ;;
 esac
 
