@@ -1,0 +1,6 @@
+   ssh() {
+       terminal_title "ssh $*"
+       command ssh $*
+       terminal_title  $( hostname )
+   }
+

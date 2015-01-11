@@ -4,11 +4,13 @@ export CLICOLOR=1
 export EDITOR=emacs
 export FIGNORE=\~:.o:.svn:DS_Store
 export GREP_OPTIONS='--color=auto'
+export HISTFILE=~/.zsh-history
 export HISTSIZE=10000
 export HOST=$(hostname -s)
 export LESS='--quit-if-one-screen --ignore-case --quiet --quit-at-eof --dumb --tilde --no-init --RAW-CONTROL-CHARS'
 export LSCOLORS=exfxcxdxbxegedabagexex
-export PATH; PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export SAVEHIST=9999999
 export VISUAL=emacs
 
 export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine)
@@ -17,7 +19,7 @@ export M2;         M2=${M2_HOME}/bin
 export MAVEN_OPTS; MAVEN_OPTS=
 
 fpath=(~/.zfuncs $fpath)
-autoload -U go mvn sql 
+autoload -U go mvn sql terminal_title ssh
 
 # enable git completions
 autoload -U compinit && compinit
@@ -29,6 +31,8 @@ function precmd
 {
   local GIT_BRANCH=$( git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s;* \(.*\);\1:;" )
   PS1=%B%m%(1j.(%j).)\ $GIT_BRANCH%1~%(!.#.\$)\ %b
+
+  type terminal_title > /dev/null 2>&1 && terminal_title ${HOST}:$( pwd )
 }
 
 
@@ -64,4 +68,3 @@ fi
 # source-if-exists ${BASH_ENV}
 source-if-exists ${DEV_HELPERS_FILE}
 source-if-exists ~/.rvm/scripts/rvm
-
