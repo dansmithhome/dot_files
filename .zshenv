@@ -19,7 +19,7 @@ export M2;         M2=${M2_HOME}/bin
 export MAVEN_OPTS; MAVEN_OPTS=
 
 fpath=(~/.zfuncs $fpath)
-autoload -U go mvn sql 
+autoload -U go mvn sql terminal_title ssh
 
 # enable git completions
 autoload -U compinit && compinit
@@ -31,6 +31,8 @@ function precmd
 {
   local GIT_BRANCH=$( git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s;* \(.*\);\1:;" )
   PS1=%B%m%(1j.(%j).)\ $GIT_BRANCH%1~%(!.#.\$)\ %b
+
+  type terminal_title > /dev/null 2>&1 && terminal_title ${HOST}:$( pwd )
 }
 
 
