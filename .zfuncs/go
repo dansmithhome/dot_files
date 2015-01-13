@@ -24,6 +24,7 @@ function go ()
         # TODO: Remove any remnants of current project from path, cdpath
         export PROJECT_DIR; PROJECT_DIR=~/src/${project}
         cdpath+=(${PROJECT_DIR} ${PROJECT_DIR}/src)
+        cd ~/src/${project}
     else 
         cd ${PROJECT_DIR}/$1
     fi
