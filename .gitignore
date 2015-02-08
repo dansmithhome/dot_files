@@ -27,4 +27,6 @@ Thumbs.db
 .mysql_history
 .ssh
 .zhistory
+.zsh-history
 .zshrc
+src

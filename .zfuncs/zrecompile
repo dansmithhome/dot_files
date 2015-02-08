@@ -1,0 +1,17 @@
+# Usage: zrecompile
+# 
+
+
+
+function zrecompile()
+{
+    local FUNCSDIR=~/.zfuncs
+
+    [[ -d $FUNCSDIR ]] || return 0
+
+    for srcfile in ${FUNCSDIR}/^*.zwc
+    do
+        echo compiling $(basename ${srcfile})...
+        zcompile -U ${srcfile}
+    done
+}

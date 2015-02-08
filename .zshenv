@@ -23,10 +23,10 @@ alias ls='ls -F'
 alias ll="ls -l"
 alias more=less
 
-
+set -o extendedglob
 
 fpath=(~/.zfuncs $fpath)
-autoload -U go mvn sql terminal_title ssh
+autoload -U $( cd ~/.zfuncs && echo ^*.zwc )
 
 # enable git completions
 autoload -U compinit && compinit
