@@ -18,6 +18,13 @@ export M2_HOME;    M2_HOME=/usr/local/apache-maven/apache-maven-3.2.3
 export M2;         M2=${M2_HOME}/bin
 export MAVEN_OPTS; MAVEN_OPTS=
 
+alias emcas=emacs
+alias ls='ls -F'
+alias ll="ls -l"
+alias more=less
+
+
+
 fpath=(~/.zfuncs $fpath)
 autoload -U go mvn sql terminal_title ssh
 
@@ -62,6 +69,8 @@ if [ -f ~/bin/keychain ]
 then
     eval $(~/bin/keychain --eval --agents ssh --quiet carc-git github-dansmithhome id_dsa )
     ssh-add -l > /dev/null || ssh-add
+else 
+    ssh-add -l > /dev/null 2>&1 || eval $( ssh-agent ) > /dev/null
 fi
 
 

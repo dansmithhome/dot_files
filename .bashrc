@@ -31,3 +31,4 @@ then
 
 fi
 
+MANPATH=$MANPATH:$HOME/share/man

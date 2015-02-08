@@ -1,3 +1,6 @@
+; (toggle-truncate-lines)
+
+
 (setq load-path (append load-path (list "~/elisp" "~/elisp/themes") ))
 (setq inhibit-startup-message t)
 (setq default-tab-width 4)
@@ -137,3 +140,5 @@
     (if default-directory
         (setq tags-table-list (list (expand-file-name "TAGS")))))
 
+
+(put 'scroll-left 'disabled nil)
