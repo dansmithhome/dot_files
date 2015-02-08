@@ -9,6 +9,12 @@ function sql()
         shift
     fi
 
-    mysql -e "$*"  ${db}
+    if [[ $1 = recreate ]]
+    then
+        mysql -e "source $HOME/src/dataverse/src/sql/create-measurements-db.sql"  ${db}
+        mysql -e "source $HOME/src/dataverse/src/sql/create-views-procs.sql"      ${db}
+    else
+        mysql -e "$*"  ${db}
+    fi
 }
 
