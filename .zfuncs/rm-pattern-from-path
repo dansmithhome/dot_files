@@ -1,0 +1,14 @@
+function rm-pattern-from-path()
+{
+        local item
+        local newpath
+
+        if [[ ${1} != '' ]]
+        then
+            for item in $path
+            do 
+                [[ ${item} != ${1}* ]] && newpath+=:${item}
+            done
+        fi
+        PATH=$(echo $newpath | sed 's/^://')
+}

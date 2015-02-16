@@ -9,7 +9,10 @@ function zrecompile()
 
     [[ -d $FUNCSDIR ]] || return 0
 
-    for srcfile in ${FUNCSDIR}/^*.zwc
+    /bin/rm -f ${FUNCSDIR}/*.zwc    2> /dev/null
+    /bin/rm -f ${FUNCSDIR}/*~       2> /dev/null
+
+    for srcfile in ${FUNCSDIR}/*
     do
         echo compiling $(basename ${srcfile})...
         zcompile -U ${srcfile}

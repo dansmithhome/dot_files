@@ -18,17 +18,7 @@ function find_existing_dir
     echo "missing-directory"
 }
 
-function source-if-exists {
-    [[ -s "${1}" ]] && source "${1}"
-}
 
-function append-to-path {
-    [[ -d "${1}" ]] && PATH="${PATH}:${1}"
-}
-
-function prepend-to-path {
-    [[ -d "${1}" ]] && PATH="${1}:${PATH}"
-}
 
 
 

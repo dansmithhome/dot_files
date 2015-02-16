@@ -8,6 +8,10 @@ function go ()
 {
     local project=$1
 
+    # remove old project paths from path
+    [[ -n ${PROJECT_DIR} ]] && rm-pattern-from-path ${PROJECT_DIR}
+
+
     if [[ ${project} == '' ]]
     then 
          if [[ ${PROJECT_DIR} == '' ]]
@@ -19,11 +23,14 @@ function go ()
          return
     fi
 
+
     if [[ -d ~/src/${project} ]]
     then 
         # TODO: Remove any remnants of current project from path, cdpath
         export PROJECT_DIR; PROJECT_DIR=~/src/${project}
         cdpath+=(${PROJECT_DIR} ${PROJECT_DIR}/src)
+        append-to-path ${PROJECT_DIR}/src/scripts
+        append-to-path ${PROJECT_DIR}/src/sql
         cd ~/src/${project}
     else 
         cd ${PROJECT_DIR}/$1
