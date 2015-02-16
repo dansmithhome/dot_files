@@ -6,6 +6,7 @@
 function zrecompile()
 {
     local FUNCSDIR=~/.zfuncs
+    local srcfile
 
     [[ -d $FUNCSDIR ]] || return 0
 
@@ -14,7 +15,10 @@ function zrecompile()
 
     for srcfile in ${FUNCSDIR}/*
     do
-        echo compiling $(basename ${srcfile})...
+        local funcname=$(basename ${srcfile})
+        unset -f ${funcname}
+        echo compiling ${funcname}...
         zcompile -U ${srcfile}
+        autoload -U ${funcname}
     done
 }
