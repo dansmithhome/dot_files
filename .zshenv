@@ -13,6 +13,7 @@ autoload -U $( cd ~/.zfuncs && echo ^*.zwc )
 # enable git completions
 autoload -U compinit && compinit
 
+compdef _cd_try_without_cdpath cd pushd
 
 
 function precmd

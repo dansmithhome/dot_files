@@ -1,0 +1,4 @@
+_cd_try_without_cdpath () {
+  CDPATH= _cd "$@" || _cd "$@"
+}
+
