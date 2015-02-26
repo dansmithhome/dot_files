@@ -1,0 +1,4 @@
+function ant ()
+{
+    command ant -f ${PROJECT_DIR}/build.xml  $*
+}

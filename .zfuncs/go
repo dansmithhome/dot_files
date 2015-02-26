@@ -30,7 +30,7 @@ function go ()
         export PROJECT_DIR; PROJECT_DIR=~/src/${project}
         cdpath+=(${PROJECT_DIR} ${PROJECT_DIR}/src)
         append-to-path ${PROJECT_DIR}/src/scripts
-        append-to-path ${PROJECT_DIR}/src/sql
+        append-to-path ${PROJECT_DIR}/sql
         cd ~/src/${project}
     else 
         cd ${PROJECT_DIR}/$1
