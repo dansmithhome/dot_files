@@ -8,6 +8,14 @@ function go ()
 {
     local project=$1
 
+    if [[ $# = 0 ]]
+    then
+       echo $( basename ${PROJECT_DIR} )
+       return 
+    fi
+
+
+
     # remove old project paths from path
     [[ -n ${PROJECT_DIR} ]] && PATH=$(   rm-pattern-from-path path   ${PROJECT_DIR} )
     [[ -n ${PROJECT_DIR} ]] && CDPATH=$( rm-pattern-from-path cdpath ${PROJECT_DIR} )
