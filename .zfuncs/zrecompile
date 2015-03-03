@@ -10,8 +10,7 @@ function zrecompile()
 
     [[ -d $FUNCSDIR ]] || return 0
 
-    /bin/rm -f ${FUNCSDIR}/*.zwc    2> /dev/null
-    /bin/rm -f ${FUNCSDIR}/*~       2> /dev/null
+    find ~/.zfuncs \( -name \*.zwc -o -name \*~ -o  -name \#\* \) -print0 | xargs -0 /bin/rm -f    
 
     for srcfile in ${FUNCSDIR}/*
     do

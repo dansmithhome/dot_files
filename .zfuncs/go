@@ -9,7 +9,8 @@ function go ()
     local project=$1
 
     # remove old project paths from path
-    [[ -n ${PROJECT_DIR} ]] && rm-pattern-from-path ${PROJECT_DIR}
+    [[ -n ${PROJECT_DIR} ]] && PATH=$(   rm-pattern-from-path path   ${PROJECT_DIR} )
+    [[ -n ${PROJECT_DIR} ]] && CDPATH=$( rm-pattern-from-path cdpath ${PROJECT_DIR} )
 
 
     if [[ ${project} == '' ]]

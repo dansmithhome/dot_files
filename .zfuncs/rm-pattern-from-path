@@ -1,14 +1,25 @@
+# Usage: rm-pattern-from-path path-var pattern
+#        rm-pattern-from-path cdpath /usr
+
 function rm-pattern-from-path()
 {
         local item
         local newpath
 
-        if [[ ${1} != '' ]]
+        if [[ $# != 2 ]]
         then
-            for item in $path
+            echo 'Usage: rm-pattern-from-path path-var pattern' 1>&2
+            exit 1
+        fi
+
+        local pathvar=${1}
+
+        if [[ ${2} != '' ]]
+        then
+            for item in $(eval echo '$'${pathvar})
             do 
-                [[ ${item} != ${1}* ]] && newpath+=:${item}
+                [[ ${item} != ${2}* ]] && newpath+=:${item}
             done
         fi
-        PATH=$(echo $newpath | sed 's/^://')
+        echo $newpath | sed 's/^://'
 }
