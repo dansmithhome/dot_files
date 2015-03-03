@@ -10,7 +10,7 @@ function go ()
 
     if [[ $# = 0 ]]
     then
-       echo $( basename ${PROJECT_DIR} )
+       [[ -n ${PROJECT_DIR} ]] && echo $( basename ${PROJECT_DIR} )
        return 
     fi
 
