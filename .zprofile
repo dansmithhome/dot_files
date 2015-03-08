@@ -39,10 +39,6 @@ export SAVEHIST=9999999
 export VISUAL=emacs
 
 export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine)
-export M2_HOME;    M2_HOME=$(find_existing_dir /usr/local/apache-maven/apache-maven-3.2.3 /mnt/maven )
-export M2;         M2=${M2_HOME}/bin
-export MAVEN_OPTS; MAVEN_OPTS=
-PATH+=:$M2
 
 case `hostname -s` in
     dv)  # dataverse host
