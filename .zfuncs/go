@@ -6,42 +6,40 @@
 
 function go ()
 {
-    local project=$1
 
-    if [[ $# = 0 ]]
+    if [[ $# == 0 ]]
     then
-       [[ -n ${PROJECT_DIR} ]] && echo $( basename ${PROJECT_DIR} )
-       return 
+       if [[ -n ${PROJECT_DIR} ]]
+       then
+           echo $( basename ${PROJECT_DIR} )
+       else
+           echo no project
+       fi
+       return
     fi
-
-
 
     # remove old project paths from path
     [[ -n ${PROJECT_DIR} ]] && PATH=$(   rm-pattern-from-path path   ${PROJECT_DIR} )
     [[ -n ${PROJECT_DIR} ]] && CDPATH=$( rm-pattern-from-path cdpath ${PROJECT_DIR} )
 
+    local project=$1
 
-    if [[ ${project} == '' ]]
+
+    if [[ ! ${project} =~ .*/.* && -d ~/src/${project} ]]
     then 
-         if [[ ${PROJECT_DIR} == '' ]]
-         then
-                echo 'Project not defined.  Usage: go [project]'
-                return
-         fi
-         cd ${PROJECT_DIR}
-         return
-    fi
-
-
-    if [[ -d ~/src/${project} ]]
-    then 
-        # TODO: Remove any remnants of current project from path, cdpath
+        # Remove any remnants of current project from path, cdpath
         export PROJECT_DIR; PROJECT_DIR=~/src/${project}
         cdpath+=(${PROJECT_DIR} ${PROJECT_DIR}/src)
         append-to-path ${PROJECT_DIR}/src/scripts
         append-to-path ${PROJECT_DIR}/sql
         cd ~/src/${project}
     else 
-        cd ${PROJECT_DIR}/$1
+         if [[ ${PROJECT_DIR} == '' ]]
+         then
+                echo 'No project defined.  Usage: go [project]'
+                return
+         fi
+         cd ${PROJECT_DIR}/${1}
+         return
     fi
 }
