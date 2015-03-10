@@ -2,7 +2,7 @@ function sql()
 {
     local db=Measurements
 
-    if [[ $1 = -d ]]
+    if [[ $1 == -d ]]
     then
         db=$2
         shift
@@ -11,10 +11,12 @@ function sql()
 
     if [[ $1 = recreate ]]
     then
-        mysql -e "source $HOME/src/dataverse/src/sql/create-measurements-db.sql"  ${db}
-        mysql -e "source $HOME/src/dataverse/src/sql/create-views-procs.sql"      ${db}
+        $PROJECT_DIR/sql/create-measurements-db.sh -f  ${db}
     else
-        mysql -e "$*"  ${db}
+        local COMMAND
+        COMMAND=$( echo "${*}" | sed 's/select all /select * /g' )
+        echo ${COMMAND}
+        mysql -e "${COMMAND}"  ${db}
     fi
 }
 
