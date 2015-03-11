@@ -18,8 +18,8 @@ compdef _cd_try_without_cdpath cd pushd
 
 function precmd
 {
-  local GIT_BRANCH=$( git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s;* \(.*\);\1:;" )
-  PS1=%B%m%(1j.(%j).)\ $GIT_BRANCH%1~%(!.#.\$)\ %b
+  local GIT_BRANCH=$( git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s;* \(.*\);\1:;" -e 's/.*detached from \([0-9]*\).*$/Detached-\1:/ ' )
+  PS1=%B%m%(1j.(%j).)\ ${GIT_BRANCH}%1~%(!.#.\$)\ %b
 
   type terminal_title > /dev/null 2>&1 && terminal_title ${HOST}:$( pwd )
 }
