@@ -107,7 +107,7 @@
 (global-set-key "\C-\\" 'advertised-undo)
 (global-set-key "\M-o"  'occur)
 (global-set-key "\C-x*" 'comment-region)
-(global-set-key "\C-xw" 'compare-windows)
+(global-set-key "\C-xc" 'compare-windows)
 (setq-default compare-ignore-whitespace t)
 
 (global-font-lock-mode t)
@@ -147,6 +147,12 @@
   (setq initial-frame-alist '((background-color . "green") (left . 50)  )))
 
 
+(defun commit-notes() 
+  (interactive)
+  (cond ((getenv "PROJECT_DIR") (find-file (concat (getenv "PROJECT_DIR") "/commit-notes")))
+        (t                      (message "No project set"))))
+
+
 ;; Set default TAGS to $ALEX_SITE_DIR/TAGS
 (let ((default-directory (getenv "ALEX_SITE_DIR")))
     (if default-directory
@@ -154,3 +160,54 @@
 
 
 (put 'scroll-left 'disabled nil)
+
+
+
+(defun recenter-top-bottom (&optional arg)
+  "Move current line to window center, top, and bottom, successively.
+With a prefix argument, this is the same as `recenter':
+ With numeric prefix ARG, move current line to window-line ARG.
+ With plain `C-u', move current line to window center.
+
+Otherwise move current line to window center on first call, and to
+top, middle, or bottom on successive calls.
+
+The starting position of the window determines the cycling order:
+ If initially in the top or middle third: top -> middle -> bottom.
+ If initially in the bottom third: bottom -> middle -> top.
+
+Top and bottom destinations are actually `scroll-conservatively' lines
+from true window top and bottom."
+  (interactive "P")
+  (if arg                               ; Always respect ARG.
+      (recenter arg)
+    (case last-command
+      (recenter-tb-top                  ; Top -> middle -> bottom
+       (setq this-command  'recenter-tb-middle)
+       (recenter))
+      (recenter-tb-middle
+       (setq this-command  'recenter-tb-bottom)
+       (recenter (1- (- scroll-conservatively))))
+      (recenter-tb-bottom
+       (setq this-command  'recenter-tb-top)
+       (recenter scroll-conservatively))
+      (recenter-tb-bottom-1             ; Bottom -> middle -> top
+       (setq this-command  'recenter-tb-middle-1)
+       (recenter))
+      (recenter-tb-middle-1
+       (setq this-command  'recenter-tb-top-1)
+       (recenter scroll-conservatively))
+      (recenter-tb-top-1
+       (setq this-command  'recenter-tb-bottom-1)
+       (recenter (1- (- scroll-conservatively))))
+      (otherwise                        ; First time - save mode and recenter.
+       (let ((top      (1+ (count-lines 1 (window-start))))
+             (current  (1+ (count-lines 1 (point))))
+             (total    (window-height)))
+         (setq this-command  (if (< (- current top) (/ total 3))
+                                 'recenter-tb-middle
+                               'recenter-tb-middle-1)))
+       (recenter)))))
+
+ (substitute-key-definition       'recenter 'recenter-top-bottom global-map)
+
