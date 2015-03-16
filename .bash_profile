@@ -31,13 +31,13 @@ function go ()
     if [[ -d ~/src/$PROJECT ]]
     then 
         PROJECT=${1}
-        PROJECT_DIR=~/src/${PROJECT}
+        p=~/src/${PROJECT}
     fi
 }
 
 function mvn ()
 {
-    command mvn -f ${PROJECT_DIR}/pom.xml  $*
+    command mvn -f ${p}/pom.xml  $*
 }
 
 

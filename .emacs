@@ -149,7 +149,7 @@
 
 (defun commit-notes() 
   (interactive)
-  (cond ((getenv "PROJECT_DIR") (find-file (concat (getenv "PROJECT_DIR") "/commit-notes")))
+  (cond ((getenv "p") (find-file (concat (getenv "p") "/commit-notes")))
         (t                      (message "No project set"))))
 
 

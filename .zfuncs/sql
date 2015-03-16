@@ -11,7 +11,7 @@ function sql()
 
     if [[ $1 = recreate ]]
     then
-        $PROJECT_DIR/sql/create-measurements-db.sh -f  ${db}
+        ${p}/sql/create-measurements-db.sh -f  ${db}
     else
         local COMMAND
         COMMAND=$( echo "${*}" | sed 's/select all /select * /g' )
