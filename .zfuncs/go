@@ -25,14 +25,14 @@ function go ()
     local project=$1
 
 
-    if [[ ! ${project} =~ .*/.* && -d ~/src/${project} ]]
+    if [[ ! ${project} =~ .*/.* && -d ~/p/${project} ]]
     then 
         # Remove any remnants of current project from path, cdpath
-        export PROJECT_DIR; PROJECT_DIR=~/src/${project}
-        cdpath+=(${PROJECT_DIR} ${PROJECT_DIR}/src)
-        append-to-path ${PROJECT_DIR}/src/scripts
+        export PROJECT_DIR; PROJECT_DIR=~/p/${project}
+        cdpath+=(${PROJECT_DIR} ${PROJECT_DIR}/p)
+        append-to-path ${PROJECT_DIR}/p/scripts
         append-to-path ${PROJECT_DIR}/sql
-        cd ~/src/${project}
+        cd ~/p/${project}
     else 
          if [[ ${PROJECT_DIR} == '' ]]
          then
