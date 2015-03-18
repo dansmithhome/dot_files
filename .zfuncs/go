@@ -30,7 +30,7 @@ function go ()
         # Remove any remnants of current project from path, cdpath
         export p; p=~/p/${project}
         cdpath+=(${p} ${p}/p)
-        append-to-path ${p}/p/src/scripts
+        append-to-path ${p}/src/scripts
         append-to-path ${p}/sql
         cd ~/p/${project}
     else 
