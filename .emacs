@@ -83,6 +83,7 @@
         (replace-match "" nil nil)))
 
 (global-set-key "\M-\C-d" 'whack-whitespace)
+(global-set-key "\C-xg" 'goto-line)
 
 (defalias 'perl-mode 'cperl-mode)
 
