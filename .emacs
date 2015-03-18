@@ -40,6 +40,9 @@
 (autoload 'tt-mode "tt-mode")
 (autoload 'ruby-mode "ruby-mode")
 (autoload 'haml-mode "haml-mode")
+(autoload 'color-theme-solarized-light "color-theme-solarized-light")
+(autoload 'color-theme-solarized-dark "color-theme-solarized-dark")
+
 (setq-default indent-tabs-mode nil)
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t) (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
