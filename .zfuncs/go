@@ -32,6 +32,7 @@ function go ()
         cdpath+=(${p} ${p}/p)
         append-to-path ${p}/src/scripts
         append-to-path ${p}/sql
+        export DATAVERSE_ROOT_DIR; DATAVERSE_ROOT_DIR=${p}
         cd ~/p/${project}
     else 
          if [[ ${p} == '' ]]
