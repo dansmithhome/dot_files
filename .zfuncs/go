@@ -29,7 +29,7 @@ function go ()
     then 
         # Remove any remnants of current project from path, cdpath
         export p; p=~/p/${project}
-        cdpath+=(${p} ${p}/p)
+        cdpath+=(${p} ${p}/src)
         append-to-path ${p}/src/scripts
         append-to-path ${p}/sql
         export DATAVERSE_ROOT_DIR; DATAVERSE_ROOT_DIR=${p}
