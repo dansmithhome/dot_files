@@ -18,16 +18,15 @@ function go ()
        return
     fi
 
-    # remove old project paths from path
-    [[ -n ${p} ]] && PATH=$(   rm-pattern-from-path path   ${p} )
-    [[ -n ${p} ]] && CDPATH=$( rm-pattern-from-path cdpath ${p} )
-
     local project=$1
 
 
     if [[ ! ${project} =~ .*/.* && -d ~/p/${project} ]]
     then 
-        # Remove any remnants of current project from path, cdpath
+        # remove old project paths from path
+        [[ -n ${p} ]] && PATH=$(   rm-pattern-from-path path   ${p} )
+        [[ -n ${p} ]] && CDPATH=$( rm-pattern-from-path cdpath ${p} )
+
         export p; p=~/p/${project}
         cdpath+=(${p} ${p}/src)
         append-to-path ${p}/src/scripts
