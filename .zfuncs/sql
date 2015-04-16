@@ -53,6 +53,10 @@ function sql()
             shift
             COMMAND='select all from translational_sample '"${*}"
             ;;
+        row)
+            shift
+            COMMAND='select distinct MV.UID,A.Name,Number,Date,Text from  measurementvalue MV, measurementcolumn MC, Attribute A where A.UID=MC.attributeuid and MV.measurementColumnUID=A.UID order by MV.UID asc '"${*}"
+            ;;
         *)
             COMMAND=${*}
             ;;
