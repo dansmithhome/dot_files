@@ -9,14 +9,56 @@ function sql()
         shift
     fi
 
-    if [[ $1 = recreate ]]
-    then
-        ${p}/sql/create-measurements-db.sh -f  ${db}
-    else
-        local COMMAND
-        COMMAND=$( echo "${*}" | sed 's/select all /select * /g' )
-        echo ${COMMAND}
-        mysql -e "${COMMAND}"  ${db}
-    fi
+    local COMMAND
+    echo $1
+    case ${1} in
+        sampleattribute)
+            shift
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(Text,1,50) as Text from translational_sampleattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            ;;
+        studyattribute)
+            shift
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(Text,1,50) as Text from translational_studyattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            ;;
+        visitattribute)
+            shift
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(Text,1,50) as Text from translational_visitattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            ;;
+        cohortattribute)
+            shift
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(Text,1,50) as Text from translational_cohortattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            ;;
+        subjectattribute)
+            shift
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(Text,1,50) as Text from translational_studyattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            ;;
+        study)
+            shift
+            COMMAND='select all from translational_study '"${*}"
+            ;;
+        cohort)
+            shift
+            COMMAND='select all from translational_cohort '"${*}"
+            ;;
+        subject)
+            shift
+            COMMAND='select all from translational_subject '"${*}"
+            ;;
+        visit)
+            shift
+            COMMAND='select all from translational_visit '"${*}"
+            ;;
+
+        sample)
+            shift
+            COMMAND='select all from translational_sample '"${*}"
+            ;;
+        *)
+            COMMAND=${*}
+            ;;
+    esac
+    COMMAND=$( echo "${COMMAND}" | sed 's/select all /select * /g' )
+    echo mysql -e "${COMMAND}"  ${db}
+    mysql -e "${COMMAND}"  ${db}
 }
 
