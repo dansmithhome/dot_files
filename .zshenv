@@ -4,6 +4,7 @@ alias emcas=emacs
 alias ls='ls -F'
 alias ll="ls -l"
 alias more=less
+alias sql="noglob sql"
 
 set -o extendedglob
 
