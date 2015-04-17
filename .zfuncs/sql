@@ -38,11 +38,15 @@ function sql()
             ;;
         subjectattribute|subjectattr|suattr)
             shift
-            COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_studyattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_subjectattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
         study)
             shift
             COMMAND='select * from translational_study '"${*}"
+            ;;
+        entity)
+            shift
+            COMMAND='select E.UID,E.name,D.name,E.description from entity E, Domain D where E.domainuid = D.UID '"${*}"
             ;;
         cohort)
             shift
