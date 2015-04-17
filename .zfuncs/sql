@@ -40,6 +40,10 @@ function sql()
             shift
             COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_subjectattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
+        measurementsetattribute|msattr)
+            shift
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from measurementsetattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            ;;
         study)
             shift
             COMMAND='select * from translational_study '"${*}"
@@ -64,6 +68,10 @@ function sql()
         sample)
             shift
             COMMAND='select * from translational_sample '"${*}"
+            ;;
+        attr)
+            shift
+            COMMAND='select A.UID,A.Name as Attribute_Name,T.name as Type,A.Description,A.IsFullText,A.IsDefault,A.SearchWeight as Type from attribute A, Entity E, Type T where E.UID=A.entityUID and T.UID=A.typeUID'"${*}"
             ;;
         row)
             shift
