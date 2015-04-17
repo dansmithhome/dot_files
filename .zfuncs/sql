@@ -2,15 +2,23 @@ function sql()
 {
     local db=Measurements
 
-    if [[ $1 == -d ]]
+    if [[ $1 = -d ]]
     then
-        db=$2
+        db=${2}
+        echo ${db} > ~/.sql-db
         shift
         shift
+    else
+        [[ -f ~/.sql-db ]] && db=$( < ~/.sql-db )
+        echo ${db}
     fi
 
+
+    [[ $# = 0 ]] && return
+    
+
+
     local COMMAND
-    echo $1
     case ${1} in
         sampleattribute)
             shift
