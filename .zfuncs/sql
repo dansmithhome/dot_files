@@ -20,23 +20,23 @@ function sql()
 
     local COMMAND
     case ${1} in
-        sampleattribute)
+        sampleattribute|sampleattr|sa)
             shift
             COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_sampleattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
-        studyattribute)
+        studyattribute|sta|stattr)
             shift
             COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_studyattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
-        visitattribute)
+        visitattribute|va|vattr)
             shift
             COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_visitattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
-        cohortattribute)
+        cohortattribute|ca|coattr)
             shift
             COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_cohortattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
-        subjectattribute)
+        subjectattribute|subjectattr|suattr)
             shift
             COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_studyattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
