@@ -13,10 +13,7 @@ function sql()
         echo ${db}
     fi
 
-
     [[ $# = 0 ]] && return
-    
-
 
     local COMMAND
     case ${1} in
