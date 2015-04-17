@@ -1,0 +1,14 @@
+function mysql()
+{
+    local db=
+
+    if [[ $# = 0 ]]
+    then
+        [[ -f ~/.sql-db ]] && db=$( < ~/.sql-db )
+        echo ${db}
+        command mysql ${db}
+    else
+        command mysql ${*} 
+    fi
+}
+
