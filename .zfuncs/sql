@@ -22,23 +22,23 @@ function sql()
     case ${1} in
         sampleattribute)
             shift
-            COMMAND="select SA.UID,A.Name,Number,Date,Substring(Text,1,50) as Text from translational_sampleattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_sampleattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
         studyattribute)
             shift
-            COMMAND="select SA.UID,A.Name,Number,Date,Substring(Text,1,50) as Text from translational_studyattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_studyattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
         visitattribute)
             shift
-            COMMAND="select SA.UID,A.Name,Number,Date,Substring(Text,1,50) as Text from translational_visitattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_visitattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
         cohortattribute)
             shift
-            COMMAND="select SA.UID,A.Name,Number,Date,Substring(Text,1,50) as Text from translational_cohortattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_cohortattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
         subjectattribute)
             shift
-            COMMAND="select SA.UID,A.Name,Number,Date,Substring(Text,1,50) as Text from translational_studyattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_studyattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
         study)
             shift
