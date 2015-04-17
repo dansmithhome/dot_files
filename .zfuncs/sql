@@ -10,10 +10,13 @@ function sql()
         shift
     else
         [[ -f ~/.sql-db ]] && db=$( < ~/.sql-db )
-        echo ${db}
     fi
 
-    [[ $# = 0 ]] && return
+    if [[ $# = 0 ]]
+    then
+        echo ${db}
+        return
+    fi
 
     local COMMAND
     case ${1} in
@@ -39,24 +42,24 @@ function sql()
             ;;
         study)
             shift
-            COMMAND='select all from translational_study '"${*}"
+            COMMAND='select * from translational_study '"${*}"
             ;;
         cohort)
             shift
-            COMMAND='select all from translational_cohort '"${*}"
+            COMMAND='select * from translational_cohort '"${*}"
             ;;
         subject)
             shift
-            COMMAND='select all from translational_subject '"${*}"
+            COMMAND='select * from translational_subject '"${*}"
             ;;
         visit)
             shift
-            COMMAND='select all from translational_visit '"${*}"
+            COMMAND='select * from translational_visit '"${*}"
             ;;
 
         sample)
             shift
-            COMMAND='select all from translational_sample '"${*}"
+            COMMAND='select * from translational_sample '"${*}"
             ;;
         row)
             shift
