@@ -40,43 +40,39 @@ export VISUAL=emacs
 
 export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine)
 
-case `hostname -s` in
+case $( hostname -s ) in
     dv)  # dataverse host
+        eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa)
         ;;
 
     Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
+        eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa carc-git github-dansmithhome id_dsa )
 	    ;;
 
     Bosco|dan-macbook-pro)   # laptop
-       ;;
+        eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa carc-git github-dansmithhome id_dsa )
+        ;;
 
     dev|askalexander|conjuringarts) 
-       export ALEX_LIB=/mnt/www/sites/alex/lib
-       export DEV_HELPERS_FILE=~/.bashrc-alex-helpers
-	   export EC2_HOME=~/ec2-api-tools-1.3-36506
-	   export EC2_PRIVATE_KEY=~/.ec2/pk-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
-	   export EC2_CERT=~/.ec2/cert-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
-	   append-to-path ${EC2_HOME}/bin
-	   ;;
+        export ALEX_LIB=/mnt/www/sites/alex/lib
+        export DEV_HELPERS_FILE=~/.bashrc-alex-helpers
+ 	    export EC2_HOME=~/ec2-api-tools-1.3-36506
+	    export EC2_PRIVATE_KEY=~/.ec2/pk-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
+	    export EC2_CERT=~/.ec2/cert-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
+	    append-to-path ${EC2_HOME}/bin
+	    ;;
 
     *)
-      echo .zshenv: Unknown host. Cannot customize host environment.
-       ;;
+        echo .zshenv: Unknown host. Cannot customize host environment.
+        eval $( keychain --eval --agents ssh --quiet carc-git github-dansmithhome id_dsa )
+        ssh-add -l > /dev/null 2>&1 || eval $( ssh-agent ) > /dev/null
+        ;;
 esac
 
 prepend-to-path /usr/local/bin
 append-to-path  /usr/local/git/bin
 append-to-path  ~/.rvm/bin 
 append-to-path  /usr/local/heroku/bin
-
-
-if [ -f ~/bin/keychain ]
-then
-    eval $(~/bin/keychain --eval --agents ssh --quiet carc-git github-dansmithhome id_dsa )
-    ssh-add -l > /dev/null || ssh-add
-else 
-    ssh-add -l > /dev/null 2>&1 || eval $( ssh-agent ) > /dev/null
-fi
 
 
 # source-if-exists ${BASH_ENV}
