@@ -1,0 +1,4 @@
+function detached
+{
+    pidtree $( screen -ls  | sed -n  -e 's/^\s*//' -e '/Detached/s/\..*//p' )
+}
