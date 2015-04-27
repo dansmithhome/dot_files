@@ -46,11 +46,11 @@ case $( hostname -s ) in
         ;;
 
     Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
-        eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa carc-git github-dansmithhome id_dsa )
+        eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa carc-git github-dansmithhome_e id_dsa )
 	    ;;
 
     Bosco|dan-macbook-pro)   # laptop
-        eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa carc-git github-dansmithhome id_dsa )
+        eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa carc-git github-dansmithhome_e id_dsa )
         ;;
 
     dev|askalexander|conjuringarts) 
