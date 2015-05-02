@@ -50,7 +50,7 @@ case $( hostname -s ) in
 	    ;;
 
     Bosco|dan-macbook-pro)   # laptop
-        eval $(keychain --quiet --eval --agents ssh carc_q github-dansmithhome_e id_dsa )
+        eval $(keychain --quiet --eval --agents ssh carc_q github-dansmithhome_e github-dansmith-pki_m id_dsa )
         ;;
 
     dev|askalexander|conjuringarts) 
