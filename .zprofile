@@ -46,11 +46,11 @@ case $( hostname -s ) in
         ;;
 
     Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
-        eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa carc-git github-dansmithhome id_dsa )
+        eval $(keychain --quiet --eval --agents ssh carc_q github-dansmithhome_e github-dansmith-pki_m)
 	    ;;
 
     Bosco|dan-macbook-pro)   # laptop
-        eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa carc-git github-dansmithhome id_dsa )
+        eval $(keychain --quiet --eval --agents ssh carc_q github-dansmithhome_e id_dsa )
         ;;
 
     dev|askalexander|conjuringarts) 
@@ -64,7 +64,7 @@ case $( hostname -s ) in
 
     *)
         echo .zshenv: Unknown host. Cannot customize host environment.
-        eval $( keychain --eval --agents ssh --quiet carc-git github-dansmithhome id_dsa )
+        eval $( keychain --eval --agents ssh --quiet carc-git github-dansmithhome_e id_dsa )
         ssh-add -l > /dev/null 2>&1 || eval $( ssh-agent ) > /dev/null
         ;;
 esac
