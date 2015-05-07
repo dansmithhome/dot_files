@@ -23,12 +23,15 @@ function find_existing_dir
 
 
 
+[[ -f ~/.aws/credentials ]] && export AWS_CREDENTIALS=~/.aws/credentials
+
+
 export CDPATH=.:~:..:~/src
 export DEV_HELPERS_FILE=
 export CLICOLOR=1
 export EDITOR=emacs
 export FIGNORE=\~:.o:.svn:DS_Store
-export GREP_OPTIONS='--color=auto'
+export GREP_OPTIONS='--color=auto --directories=skip'
 export HISTFILE=~/.zsh-history
 export HISTSIZE=10000
 export HOST=$(hostname -s)
@@ -68,6 +71,12 @@ case $( hostname -s ) in
         ssh-add -l > /dev/null 2>&1 || eval $( ssh-agent ) > /dev/null
         ;;
 esac
+
+# Chef 
+prepend-to-path /opt/chefdk/embedded/bin
+prepend-to-path /opt/chefdk/bin
+prepend-to-path ~/.chefdk/gem/ruby/2.1.0/bin
+
 
 prepend-to-path /usr/local/bin
 append-to-path  /usr/local/git/bin
