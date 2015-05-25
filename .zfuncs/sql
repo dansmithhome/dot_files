@@ -75,7 +75,7 @@ function sql()
             ;;
         row)
             shift
-            COMMAND='select distinct MV.UID,A.Name,Number,Date,Text from  measurement_value MV, measurement_column MC, Attribute A where A.UID=MC.attributeuid and MV.measurement_ColumnUID=A.UID order by MV.UID asc '"${*}"
+            COMMAND='select distinct MV.UID,A.Name,Number,Date,Text from  measurement_value MV, measurement_column MC, Attribute A where A.UID=MC.attributeuid and MV.ColumnUID=A.UID order by MV.UID asc '"${*}"
             ;;
         *)
             COMMAND=${*}
