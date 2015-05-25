@@ -40,9 +40,9 @@ function sql()
             shift
             COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from translational_subjectattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
-        measurementsetattribute|msattr)
+        measurement_setattribute|msattr)
             shift
-            COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from measurementsetattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
+            COMMAND="select SA.UID,A.Name,Number,Date,Substring(replace(Text,'\\n','+'),1,50) as Text from measurement_setattribute SA, Attribute A where SA.AttributeUID = A.UID  ${*}"
             ;;
         study)
             shift
@@ -75,7 +75,7 @@ function sql()
             ;;
         row)
             shift
-            COMMAND='select distinct MV.UID,A.Name,Number,Date,Text from  measurementvalue MV, measurementcolumn MC, Attribute A where A.UID=MC.attributeuid and MV.measurementColumnUID=A.UID order by MV.UID asc '"${*}"
+            COMMAND='select distinct MV.UID,A.Name,Number,Date,Text from  measurement_value MV, measurement_column MC, Attribute A where A.UID=MC.attributeuid and MV.measurement_ColumnUID=A.UID order by MV.UID asc '"${*}"
             ;;
         *)
             COMMAND=${*}
