@@ -43,33 +43,41 @@ export VISUAL=emacs
 
 export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine)
 
-if [[ -t 0 ]]
-then
+
+
+
+function setup-ssh
+{
+    # Share a single ssh-agent per machine.
+    # usage: setup_ssh ssh-file ssh-file ...
+
     export SSH_AGENT_PID_FILE=~/.ssh-agent-pid-$(hostname -s)
 
-    if ! pgrep -F ${SSH_AGENT_PID_FILE} ssh-agent > /dev/null
+    if [[ ! -f ${SSH_AGENT_PID_FILE} ]] ||  ! pgrep -l $( whoami) -F ${SSH_AGENT_PID_FILE} ssh-agent > /dev/null
     then
+        # Create new ssh agent
         eval $( ssh-agent ) > /dev/null
         echo ${SSH_AGENT_PID} > ${SSH_AGENT_PID_FILE}
+        [[ -n $* ]] && ssh-add $*
+
     else
+        # Use existing ssh agent
         export SSH_AGENT_PID=$(< ${SSH_AGENT_PID_FILE} )
     fi
-fi
-
-
+}
 
 case $( hostname -s ) in
-    dv)  # dataverse host
-        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/{dansmith-pki-github-id_rsa}
+    dv)  # Signals host
+        setup-ssh ~/.ssh/{dansmith-pki-github-id_rsa_m,github-dansmithhome_e}
         ;;
 
-    Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
-        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
 
+    Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
+        setup-ssh  ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
 	    ;;
 
     Bosco|dan-macbook-pro)   # laptop
-        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
+        setup-ssh ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
         ;;
 
     dev|askalexander|conjuringarts) 
@@ -83,7 +91,7 @@ case $( hostname -s ) in
 
     *)
         echo .zshenv: Unknown host. Cannot customize host environment.
-        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/{carc-git,github-dansmithhome_e,id_dsa}
+        setup-ssh {carc-git,github-dansmithhome_e,id_dsa}
         ;;
 esac
 
