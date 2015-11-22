@@ -9,10 +9,15 @@
 
 
 (require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-hober)))
+ (eval-after-load "color-theme"
+   '(progn
+      (color-theme-initialize)
+;      (color-theme-emacs-nw)
+;      (color-theme-lethe)
+;      (color-theme-midnight)
+;      (color-theme-ld-dark)
+      (color-theme-dark-laptop)
+))
 
 
 

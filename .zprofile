@@ -43,17 +43,33 @@ export VISUAL=emacs
 
 export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine)
 
+if [[ -t 0 ]]
+then
+    export SSH_AGENT_PID_FILE=~/.ssh-agent-pid-$(hostname -s)
+
+    if ! pgrep -q -F ${SSH_AGENT_PID_FILE} ssh-agent
+    then
+        eval $( ssh-agent ) > /dev/null
+        echo ${SSH_AGENT_PID} > ${SSH_AGENT_PID_FILE}
+    else
+        export SSH_AGENT_PID=$(< ${SSH_AGENT_PID_FILE} )
+    fi
+fi
+
+
+
 case $( hostname -s ) in
     dv)  # dataverse host
-        eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa)
+        [[ -z ${SSH_AGENT_PID} ]] && eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa)
         ;;
 
     Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
-        eval $(keychain --quiet --eval --agents ssh carc_q github-dansmithhome_e github-dansmith-pki_m)
+        [[ -z ${SSH_AGENT_PID} ]] && ssh-add -k ~/.ssh/carc_q ~/.ssh/github-dansmithhome_e ~/.ssh/github-dansmith-pki_m
+
 	    ;;
 
     Bosco|dan-macbook-pro)   # laptop
-        eval $(keychain --quiet --eval --agents ssh carc_q github-dansmithhome_e github-dansmith-pki_m id_dsa )
+        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/carc_q ~/.ssh/github-dansmithhome_e ~/.ssh/github-dansmith-pki_m
         ;;
 
     dev|askalexander|conjuringarts) 
@@ -67,8 +83,7 @@ case $( hostname -s ) in
 
     *)
         echo .zshenv: Unknown host. Cannot customize host environment.
-        eval $( keychain --eval --agents ssh --quiet carc-git github-dansmithhome_e id_dsa )
-        ssh-add -l > /dev/null 2>&1 || eval $( ssh-agent ) > /dev/null
+        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/carc-git ~/.ssh/github-dansmithhome_e ~/.ssh/id_dsa 
         ;;
 esac
 
