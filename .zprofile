@@ -60,16 +60,16 @@ fi
 
 case $( hostname -s ) in
     dv)  # dataverse host
-        [[ -z ${SSH_AGENT_PID} ]] && eval $(keychain --quiet --eval --agents ssh dansmith-pki-github-id_rsa)
+        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/{dansmith-pki-github-id_rsa}
         ;;
 
     Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
-        [[ -z ${SSH_AGENT_PID} ]] && ssh-add -k ~/.ssh/carc_q ~/.ssh/github-dansmithhome_e ~/.ssh/github-dansmith-pki_m
+        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
 
 	    ;;
 
     Bosco|dan-macbook-pro)   # laptop
-        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/carc_q ~/.ssh/github-dansmithhome_e ~/.ssh/github-dansmith-pki_m
+        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
         ;;
 
     dev|askalexander|conjuringarts) 
@@ -83,7 +83,7 @@ case $( hostname -s ) in
 
     *)
         echo .zshenv: Unknown host. Cannot customize host environment.
-        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/carc-git ~/.ssh/github-dansmithhome_e ~/.ssh/id_dsa 
+        [[ -z ${SSH_AGENT_PID} ]] && ssh-add ~/.ssh/{carc-git,github-dansmithhome_e,id_dsa}
         ;;
 esac
 
