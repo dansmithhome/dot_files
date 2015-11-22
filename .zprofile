@@ -53,7 +53,7 @@ function setup-ssh
 
     export SSH_AGENT_PID_FILE=~/.ssh-agent-pid-$(hostname -s)
 
-    if [[ ! -f ${SSH_AGENT_PID_FILE} ]] ||  ! pgrep -l $( whoami) -F ${SSH_AGENT_PID_FILE} ssh-agent > /dev/null
+    if [[ ! -f ${SSH_AGENT_PID_FILE} ]] ||  ! pgrep -u $( whoami) -F ${SSH_AGENT_PID_FILE} ssh-agent > /dev/null
     then
         # Create new ssh agent
         eval $( ssh-agent ) > /dev/null
