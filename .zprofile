@@ -47,7 +47,7 @@ if [[ -t 0 ]]
 then
     export SSH_AGENT_PID_FILE=~/.ssh-agent-pid-$(hostname -s)
 
-    if ! pgrep -q -F ${SSH_AGENT_PID_FILE} ssh-agent
+    if ! pgrep -F ${SSH_AGENT_PID_FILE} ssh-agent > /dev/null
     then
         eval $( ssh-agent ) > /dev/null
         echo ${SSH_AGENT_PID} > ${SSH_AGENT_PID_FILE}
