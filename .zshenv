@@ -19,10 +19,19 @@ compdef _cd_try_without_cdpath cd pushd
 
 function precmd
 {
-  local GIT_BRANCH=$( git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s;* \(.*\);\1:;" -e 's/.*detached from \([0-9]*\).*$/Detached-\1:/ ' )
-  PS1=%B%m%(1j.(%j).)\ ${GIT_BRANCH}%1~%(!.#.\$)\ %b
+  local GIT_SUMMARY=
+  local GIT_REPO=$( git rev-parse --show-toplevel 2> /dev/null)
 
-  type terminal_title > /dev/null 2>&1 && terminal_title ${HOST}:$( pwd )
+  if [[ -n ${GIT_REPO} ]]
+  then
+      GIT_REPO=$( basename ${GIT_REPO} )
+      GIT_BRANCH=$( git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s;* \(.*\);\1;" -e 's/.*detached from \([0-9]*\).*$/Detached-\1:/ ' )
+      GIT_SUMMARY="$GIT_REPO:$GIT_BRANCH "
+  fi
+
+  PS1=%B%m%(1j.(%j).)\ ${GIT_SUMMARY}%1~%(!.#.\$)\ %b
+
+  type terminal_title > /dev/null 2>&1 && terminal_title ${HOST}:$( basename $PWD )
 }
 
 
