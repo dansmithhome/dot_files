@@ -31,6 +31,7 @@ function go ()
         cdpath+=(${p} ${p}/src)
         append-to-path ${p}/src/scripts
         append-to-path ${p}/sql
+        append-to-path ${p}/bin
         export SIGNALS_ROOT_DIR; SIGNALS_ROOT_DIR=${p}
         cd ~/p/${project}
     else 
