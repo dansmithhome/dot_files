@@ -32,6 +32,7 @@ function go ()
         append-to-path ${p}/src/scripts
         append-to-path ${p}/sql
         append-to-path ${p}/bin
+        append-to-path ${p}/qa/tools
         export SIGNALS_ROOT_DIR; SIGNALS_ROOT_DIR=${p}
         cd ~/p/${project}
     else 
