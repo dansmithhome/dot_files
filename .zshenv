@@ -30,10 +30,13 @@ function precmd
   fi
 
   # higgins(2) dansmith:master ~$
-  PS1=%B%m%(1j.(%j).)\ ${GIT_SUMMARY}%1~%(!.#.\$)\ %b
+  # PS1=%B%m%(1j.(%j).)\ ${GIT_SUMMARY}%1~%(!.#.\$)\ %b
 
   # server:server ~$
-  PS1=%B${GIT_SUMMARY}%1~%(!.#.\$)\ %b
+  # PS1=%B${GIT_SUMMARY}%1~%(!.#.\$)\ %b
+
+  # server:server ~ 1$
+  PS1=%B${GIT_SUMMARY}%1~\ %(1j.%j.)%(!.#.\$)\ %b
 
 
   type terminal_title > /dev/null 2>&1 && terminal_title ${HOST}:$( basename $PWD )
