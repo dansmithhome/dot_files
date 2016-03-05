@@ -1,4 +1,4 @@
-function _go_comp
+function _g_comp
 {
 reply=( `cd ~/p; echo $PREFIX*/ | sed 's;/;;g'` )
 }

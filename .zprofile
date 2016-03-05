@@ -26,7 +26,7 @@ function find_existing_dir
 [[ -f ~/.aws/credentials ]] && export AWS_CREDENTIALS=~/.aws/credentials
 
 
-export CDPATH=.:~:..:~/src
+export CDPATH=.:~:..:~/p
 export DEV_HELPERS_FILE=
 export CLICOLOR=1
 export EDITOR=emacs
@@ -101,11 +101,11 @@ prepend-to-path /opt/chefdk/bin
 prepend-to-path ~/.chefdk/gem/ruby/2.1.0/bin
 
 
+prepend-to-path /Applications/Anaconda/anaconda/bin
 prepend-to-path /usr/local/bin
 append-to-path  /usr/local/git/bin
 append-to-path  ~/.rvm/bin 
 append-to-path  /usr/local/heroku/bin
-
 
 # source-if-exists ${BASH_ENV}
 source-if-exists ${DEV_HELPERS_FILE}

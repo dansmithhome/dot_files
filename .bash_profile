@@ -106,3 +106,6 @@ source-if-exists ~/.rvm/scripts/rvm
 
 # show any detached screen sessions
 screen -ls | grep Detached
+
+# added by Anaconda2 2.5.0 installer
+export PATH="/Applications/Anaconda/anaconda/bin:$PATH"

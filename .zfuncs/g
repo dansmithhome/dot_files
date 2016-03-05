@@ -1,10 +1,10 @@
-# Usage: go [project]
-#        go [directory]
+# Usage: g [project]
+#        g [directory]
 # 
 
 
 
-function go ()
+function g ()
 {
 
     if [[ $# == 0 ]]

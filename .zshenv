@@ -16,6 +16,11 @@ autoload -U compinit && compinit
 
 compdef _cd_try_without_cdpath cd pushd
 
+compctl -K _g_comp g
+
+
+[[ -n $EMACS ]] && unsetopt zle
+
 
 function precmd
 {
