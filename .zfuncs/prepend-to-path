@@ -1,4 +1,6 @@
 function prepend-to-path()
 {
-    [[ -d "${1}" ]] && PATH="${1}:${PATH}"
+    local dir="${*}"
+    
+    [[ -d "${dir}" ]] && PATH="${dir}:${PATH}"
 }
