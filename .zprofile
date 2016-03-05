@@ -107,6 +107,7 @@ prepend-to-path /usr/local/bin
 append-to-path  /usr/local/git/bin
 append-to-path  ~/.rvm/bin 
 append-to-path  /usr/local/heroku/bin
+append-to-path "/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
 # source-if-exists ${BASH_ENV}
 source-if-exists ${DEV_HELPERS_FILE}
