@@ -24,8 +24,8 @@ function g ()
     if [[ ! ${project} =~ .*/.* && -d ~/p/${project} ]]
     then 
         # remove old project paths from path
-        [[ -n ${p} ]] && PATH=$(   rm-pattern-from-path path   ${p} )
-        [[ -n ${p} ]] && CDPATH=$( rm-pattern-from-path cdpath ${p} )
+        [[ -n ${p} ]] && PATH=$(   rm-pattern-from-path PATH   ${p} )
+        [[ -n ${p} ]] && CDPATH=$( rm-pattern-from-path CDPATH ${p} )
 
         export p; p=~/p/${project}
         cdpath+=(${p} ${p}/src)
@@ -38,7 +38,7 @@ function g ()
     else 
          if [[ ${p} == '' ]]
          then
-                echo 'No project defined.  Usage: go [project]'
+                echo 'No project defined.  Usage: g [project]'
                 return
          fi
          cd ${p}/${1}

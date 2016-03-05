@@ -16,8 +16,11 @@ function rm-pattern-from-path()
 
         if [[ ${2} != '' ]]
         then
-            for item in $(eval echo '$'${pathvar})
+            local var="$(eval echo '$'${pathvar})"
+
+            awk -v path="${var}" 'BEGIN {count=split(path, a, ":"); for(i = 1; i <= count; i++)  print a[i];}' | while read item
             do 
+                echo checking $item 1>&2 
                 [[ ${item} != ${2}* ]] && newpath+=:${item}
             done
         fi
