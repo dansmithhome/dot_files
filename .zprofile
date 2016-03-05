@@ -32,6 +32,7 @@ export CLICOLOR=1
 export EDITOR=emacs
 export FIGNORE=\~:.o:.svn:DS_Store
 export GREP_OPTIONS='--color=auto --directories=skip'
+export GOPATH=~/p/go
 export HISTFILE=~/.zsh-history
 export HISTSIZE=10000
 export HOST=$(hostname -s)
