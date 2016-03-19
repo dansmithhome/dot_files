@@ -102,6 +102,10 @@ prepend-to-path /opt/chefdk/bin
 prepend-to-path ~/.chefdk/gem/ruby/2.1.0/bin
 
 
+#
+[[ -d ~/p/ref-chef ]] && export SIGNALS_CHEF_ROOT=~/p/ref-chef
+
+
 prepend-to-path /Applications/Anaconda/anaconda/bin
 prepend-to-path /usr/local/bin
 append-to-path  /usr/local/git/bin
