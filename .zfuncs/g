@@ -2,7 +2,8 @@
 #        g [directory]
 # 
 
-
+export SIGNALS_PKG_DIR=~/p/pkgs
+export SIGNALS_PKG_CACHE_DIR=~/p/pkgs/cache
 
 function g ()
 {

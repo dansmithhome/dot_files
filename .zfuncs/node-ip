@@ -1,0 +1,10 @@
+function node-ip
+{
+    # usage: node-ip node
+    # returns public ip address for node
+    
+    local node="${1}"
+    
+    ( cd ${SIGNALS_CHEF_ROOT}; bin/knife.sh node show "${node}"  -a cloud.public_hostname | awk -F: 'NR == 2 {gsub(/^ */, "", $2); print $2}' )
+    return 0
+}
