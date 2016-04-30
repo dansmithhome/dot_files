@@ -1,30 +1,49 @@
 # Usage: g [project]
+#        g [directory]
 # 
+
 
 function g ()
 {
+
+    if [[ $# == 0 ]]
+    then
+       if [[ -n ${p} ]]
+       then
+           echo $( basename ${p} )
+       else
+           echo no project
+       fi
+       return
+    fi
 
     export SIGNALS_PKG_DIR=~/p/pkgs
     export SIGNALS_PKG_CACHE_DIR=~/p/pkgs/cache
 
     local project=$1
-    if [[ ! -d ~/p/${project} ]]
-    then
-        echo 'No project defined.  Usage: g project'
-        return
+
+
+    if [[ ! ${project} =~ .*/.* && -d ~/p/${project} ]]
+    then 
+        # remove old project paths from path
+        [[ -n ${p} ]] && PATH=$(   rm-pattern-from-path PATH   ${p} )
+        [[ -n ${p} ]] && CDPATH=$( rm-pattern-from-path CDPATH ${p} )
+
+        export p; p=~/p/${project}
+        cdpath+=(${p} ${p}/src)
+        append-to-path ${p}/src/scripts
+        append-to-path ${p}/sql
+        append-to-path ${p}/bin
+        append-to-path ${p}/qa/tools
+        export SIGNALS_ROOT_DIR; SIGNALS_ROOT_DIR=${p}
+        cd ~/p/${project}
+    else 
+         if [[ ${p} == '' ]]
+         then
+                echo 'No project defined.  Usage: g [project]'
+                return
+         fi
+         cd ${p}/${1}
+         return
     fi
-
-
-    # remove old project paths from path
-    [[ -n ${p} ]] && PATH=$(   rm-pattern-from-path PATH   ${p} )
-    [[ -n ${p} ]] && CDPATH=$( rm-pattern-from-path CDPATH ${p} )
-
-    export p; p=~/p/${project}
-    cdpath+=(${p} ${p}/src)
-    append-to-path ${p}/src/scripts
-    append-to-path ${p}/sql
-    append-to-path ${p}/bin
-    append-to-path ${p}/qa/tools
-    export SIGNALS_ROOT_DIR; SIGNALS_ROOT_DIR=${p}
-    cd ~/p/${project}
 }
