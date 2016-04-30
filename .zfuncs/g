@@ -1,25 +1,13 @@
 # Usage: g [project]
 # 
 
-export SIGNALS_PKG_DIR=~/p/pkgs
-export SIGNALS_PKG_CACHE_DIR=~/p/pkgs/cache
-
 function g ()
 {
 
-    if [[ $# == 0 ]]
-    then
-       if [[ -n ${p} ]]
-       then
-           echo $( basename ${p} )
-       else
-           echo no project
-       fi
-       return
-    fi
+    export SIGNALS_PKG_DIR=~/p/pkgs
+    export SIGNALS_PKG_CACHE_DIR=~/p/pkgs/cache
 
     local project=$1
-
     if [[ ! -d ~/p/${project} ]]
     then
         echo 'No project defined.  Usage: g project'
