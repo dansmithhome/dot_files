@@ -10,7 +10,7 @@ function g ()
     then
        if [[ -n ${p} ]]
        then
-           echo $( basename ${p} )
+           cd ${p}
        else
            echo no project
        fi
