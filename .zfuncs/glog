@@ -1,0 +1,5 @@
+function glog
+{
+    git log --oneline --all --graph --decorate $*
+
+}
