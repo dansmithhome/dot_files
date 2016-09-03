@@ -96,6 +96,13 @@ case $( hostname -s ) in
         ;;
 esac
 
+
+# aws completer
+[[ -f $( whence aws_zsh_completer.sh ) ]] && source $( whence aws_zsh_completer.sh )
+
+
+
+
 # Chef 
 prepend-to-path /opt/chefdk/embedded/bin
 prepend-to-path /opt/chefdk/bin
