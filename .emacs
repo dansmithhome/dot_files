@@ -1,7 +1,24 @@
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+
+(require 'package)
+(add-to-list 'package-archives
+                          '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(package-initialize)
+
 ; (toggle-truncate-lines)
 
 
-(setq load-path (append load-path (list "~/elisp" "~/elisp/themes") ))
+(setq-default vc-make-backup-files   t)
+(setq-default backup-directory-alist `(("." . "/Users/dansmith/.saves")))
+
+(setq delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
+
+; "~/elisp/themes"
+
+(setq load-path (append load-path (list "~/elisp" ) ))
 (setq inhibit-startup-message t)
 (setq default-tab-width 4)
 (setq column-number-mode t)
@@ -14,11 +31,10 @@
       (color-theme-initialize)
 ;      (color-theme-emacs-nw)
 ;      (color-theme-lethe)
-;      (color-theme-midnight)
+      (color-theme-midnight)
 ;      (color-theme-ld-dark)
-      (color-theme-dark-laptop)
+;      (color-theme-dark-laptop)
 ))
-
 
 
 ;; (custom-set-faces
@@ -45,8 +61,8 @@
 (autoload 'tt-mode "tt-mode")
 (autoload 'ruby-mode "ruby-mode")
 (autoload 'haml-mode "haml-mode")
-(autoload 'color-theme-solarized-light "color-theme-solarized-light")
-(autoload 'color-theme-solarized-dark "color-theme-solarized-dark")
+; (autoload 'color-theme-solarized-light "color-theme-solarized-light")
+; (autoload 'color-theme-solarized-dark "color-theme-solarized-dark")
 
 (setq-default indent-tabs-mode nil)
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t) (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
@@ -131,30 +147,15 @@
   )
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("8659c305d48242dc8558a015fcd475584b53be2ec5fdb469ed12d46bac16c11a" "0777cfc5345e1018a8a20506e791fb49f22b3999270456952a6675b0e05fc9e1" "588a126bb2602528f1b61ca533e86baa6c2985225cccfa6caf63efa54d95a544" "d7ad8092aa1b790f780e2e216610a5fd76960ea586b2ded178d3290030754e89" "52974e923c79ee2e5de05b5f60950f20b25ed0a1929df7f402f59dd6db7d511f" "52c3d86abcc95f3a7a3566c15834b09caee2bb3093cf9d53d9eab61f925326c6" "58c7e88517136072f383afef93fe1eeb9c12de37398c4f95c27f363a2cc41fcd" "7dad2be7d806486305d7d3afe6b53a0c882cf651e183ed1ffe6dfb0745dc80f6" default))))
 
 (put 'downcase-region 'disabled nil)
-
- (defun writeroom ()
-  "Switches to a WriteRoom-like fullscreen style"
-  (interactive)	
-  (when (featurep 'aquamacs)
-    ;; switch to white on black
-    (color-theme-initialize)
-    (color-theme-clarity)
-    ;; switch to Garamond 36pt
-    (aquamacs-autoface-mode 0)
-    (set-frame-font "-apple-garamond-medium-r-normal--36-360-72-72-m-360-iso10646-1")
-    ;; switch to fullscreen mode
-    (aquamacs-toggle-full-frame)))
-    
-(when (featurep 'aquamacs)
-  (setq initial-frame-alist '((background-color . "green") (left . 50)  )))
-
 
 (defun commit-notes() 
   (interactive)
@@ -199,7 +200,7 @@ from true window top and bottom."
        (recenter (1- (- scroll-conservatively))))
       (recenter-tb-bottom
        (setq this-command  'recenter-tb-top)
-       (recenter scroll-conservatively))
+       (Recenter scroll-conservatively))
       (recenter-tb-bottom-1             ; Bottom -> middle -> top
        (setq this-command  'recenter-tb-middle-1)
        (recenter))
@@ -220,3 +221,11 @@ from true window top and bottom."
 
  (substitute-key-definition       'recenter 'recenter-top-bottom global-map)
 
+
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

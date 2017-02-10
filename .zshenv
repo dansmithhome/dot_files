@@ -30,8 +30,11 @@ function precmd
   if [[ -n ${GIT_REPO} ]]
   then
       GIT_REPO=$( basename ${GIT_REPO} )
-      GIT_BRANCH=$( git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s;* \(.*\);\1;" -e 's/.*detached from \([0-9]*\).*$/Detached-\1:/ ' )
+      # GIT_BRANCH=$( git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s;* \(.*\);\1;" -e 's/.*detached from \([0-9]*\).*$/Detached-\1:/ ' )
+      GIT_BRANCH=$( git rev-parse --abbrev-ref HEAD 2> /dev/null)
+
       GIT_SUMMARY="$GIT_REPO:$GIT_BRANCH "
+      # GIT_SUMMARY="$GIT_REPO:"
   fi
 
   # higgins(2) dansmith:master ~$
@@ -41,7 +44,21 @@ function precmd
   # PS1=%B${GIT_SUMMARY}%1~%(!.#.\$)\ %b
 
   # server:server ~ 1$
-  PS1=%B${GIT_SUMMARY}%1~\ %(1j.%j.)%(!.#.\$)\ %b
+
+
+  local dirprompt=""
+  if [[ $PWD == $HOME ]]
+  then
+      dirprompt='~'
+  elif [[ $PWD == $p ]]
+  then
+      dirprompt='^'
+  else
+      dirprompt=$( basename $PWD )
+  fi
+  
+  # PS1=%B${GIT_SUMMARY}%1~\ %(1j.%j.)%(!.#.\$)\ %b
+  PS1=%B${GIT_SUMMARY}${dirprompt}\ %(1j.%j.)%(!.#.\$)\ %b
 
 
   type terminal_title > /dev/null 2>&1 && terminal_title ${HOST}:$( basename $PWD )

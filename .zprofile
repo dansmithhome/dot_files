@@ -40,6 +40,7 @@ export LESS='--quit-if-one-screen --ignore-case --quiet --quit-at-eof --dumb --t
 export LSCOLORS=xxxxxxxxxxxxxxxxxxxxxx   # no colors in ls, thank you.
 export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export SAVEHIST=9999999
+export SHELL=/bin/bash
 export VISUAL=emacs
 
 export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine)
@@ -115,6 +116,8 @@ prepend-to-path ~/.chefdk/gem/ruby/2.1.0/bin
 
 prepend-to-path /Applications/Anaconda/anaconda/bin
 prepend-to-path /usr/local/bin
+prepend-to-path /usr/local/opt
+prepend-to-path /usr/local/sbin
 append-to-path  /usr/local/git/bin
 append-to-path  ~/.rvm/bin 
 append-to-path  /usr/local/heroku/bin
