@@ -19,6 +19,7 @@ function g ()
 
     export SIGNALS_PKG_DIR=~/p/pkgs
     export SIGNALS_PKG_CACHE_DIR=~/p/pkgs/cache
+    export ES_NODES=http://es-tunnel.pkidev.net:10001
 
     local project=$1
 

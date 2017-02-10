@@ -15,7 +15,7 @@ function zrecompile()
     for srcfile in ${FUNCSDIR}/*
     do
         local funcname=$(basename ${srcfile})
-        unset -f ${funcname}
+        unset -f ${funcname}  2> /dev/null
         echo compiling ${funcname}...
         zcompile -U ${srcfile}
         autoload -U ${funcname}

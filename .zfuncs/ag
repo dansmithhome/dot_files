@@ -1,0 +1,5 @@
+function ag()
+{
+    command ag --pager less "$@"
+}
+    
