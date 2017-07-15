@@ -97,6 +97,8 @@ esac
 [[ -f $( whence aws_zsh_completer.sh ) ]] && source $( whence aws_zsh_completer.sh )
 
 
+# go
+prepend-to-path /usr/local/go/bin
 
 
 # Chef 
