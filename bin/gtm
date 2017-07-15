@@ -1,0 +1,5 @@
+#! /bin/sh
+
+MEETING_ID=${1:-243664409}
+
+open "gotomeeting://SALaunch?Action=Join&MeetingID=${MEETING_ID}"

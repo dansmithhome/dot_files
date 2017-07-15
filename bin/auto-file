@@ -1,0 +1,54 @@
+#! /bin/bash
+
+ARCHIVE_ROOT=~/Desktop/Archive
+
+
+FULL_FILENAME="${*}"
+BASE_FILENAME=$(basename "${*}")
+DIRNAME=$(dirname   "${*}")
+DATE=$( stat -t "%Y%m%d" "${*}" | awk '{gsub(/"/, "", $10); print $10}' )
+# echo DATE $DATE
+
+set -- $( echo ${FILENAME} )
+
+# ALPHA=$(echo ${1} | tr "[:lower:]" "[:upper:]" )
+# shift
+# DIGIT=${1}
+# shift
+
+ARCHIVE_SUBDIR=
+case $(basename $DIRNAME) in
+    Writing)
+      ALPHA=R
+      DIGIT=3
+      ARCHIVE_SUBDIR=Writing
+      ;;
+    Reference)
+      ALPHA=I
+      DIGIT=3
+      ARCHIVE_SUBDIR=Reference
+      ;;
+    Media)
+      ALPHA=P
+      DIGIT=3
+      ARCHIVE_SUBDIR=Media
+      ;;
+    Signals)
+      ALPHA=P
+      DIGIT=3
+      ARCHIVE_SUBDIR=Signals
+      ;;
+    *)
+      ALPHA=U
+      DIGIT=3
+      ARCHIVE_SUBDIR=
+      ;;
+esac
+
+
+# DATE=$(date +%Y%m%d_%H%M%S)
+
+echo mv "${FULL_FILENAME}"  "${ARCHIVE_ROOT}/${ARCHIVE_SUBDIR}/${DATE} ${BASE_FILENAME}" 
+     mv "${FULL_FILENAME}"  "${ARCHIVE_ROOT}/${ARCHIVE_SUBDIR}/${DATE} ${BASE_FILENAME}" 
+
+exit 0

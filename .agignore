@@ -1,0 +1,10 @@
+*.min.js
+*-min.js
+*.min.css
+*-min.css
+*.js.map
+*.css.map
+datasets/*
+yarn.lock
+*.svg
+*.csv

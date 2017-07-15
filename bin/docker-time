@@ -1,0 +1,5 @@
+#! /bin/sh
+
+docker run --rm --privileged centos:6.7 date -s "$(date)"
+
+

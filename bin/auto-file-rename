@@ -1,0 +1,26 @@
+#! /bin/sh
+
+exec > /tmp/x 2>&1 
+
+
+AUTOFILE_DIR=~/auto-file
+
+ARCHIVE_SUBDIR=$( basename $PWD | sed s/+// )
+echo $ARCHIVE_SUBDIR
+
+FULL_PATH=${*}
+FILENAME=$( basename ${FULL_PATH} )
+
+# echo $FILENAME
+# echo $FULL_PATH
+
+# osascript breaks spaces into separate lines in the dialog box.  Replace spaces with _ to keep to a single line.
+FILENAME_NO_SPACES=$( echo ${FILENAME} | sed 's/ /_/g' )
+
+name="$(osascript -e 'Tell application "System Events" to display dialog "Archive in '"${ARCHIVE_SUBDIR}"' as:" default answer "'"${FILENAME_NO_SPACES}"'"' -e 'text returned of result' 2>/dev/null)"
+
+if [[ -n ${name} ]]; then
+    name=$( echo $name | sed 's/_/ /g' )
+    echo mv "${FULL_PATH}" "${AUTOFILE_DIR}/${ARCHIVE_SUBDIR}/${name}"
+         mv "${FULL_PATH}" "${AUTOFILE_DIR}/${ARCHIVE_SUBDIR}/${name}"
+fi

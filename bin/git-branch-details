@@ -1,0 +1,23 @@
+#! /bin/sh
+
+TMPFILE=/tmp/git-branch-detail$$
+
+for b in $( git branch -r --list --merged | sed -e 's/origin\///' -e '/->/d' -e '/ master$/d' -e '/ dev$/d' -e '/ qa$/d' -e '/ release\/.*$/d' )
+do
+ git log -1 --pretty=format:"%<(30,trunc)%an%<(20,trunc)%cr merged $b%n" origin/$b
+done > ${TMPFILE}
+
+
+for b in $( git branch -r --list --no-merged | sed -e 's/origin\///' -e '/->/d' -e '/ master$/d' -e '/ dev$/d' -e '/ qa$/d' )
+do
+ git log -1 --pretty=format:"%<(30,trunc)%cn%<(20,trunc)%cr        $b%n" origin/$b
+done >> ${TMPFILE}
+
+sed -e '/ hours ago/d'  -e '/ days ago/d' < ${TMPFILE}   | sort
+
+rm ${TMPFILE}
+
+
+
+
+

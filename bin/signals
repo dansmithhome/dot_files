@@ -1,0 +1,73 @@
+#! /bin/bash
+
+# Usage: signals up|down
+# Signals up starts signals services, waits for a keystroke, then takes down all services.
+
+# Change $p to location of SIGNALS_ROOT_DIR
+
+if [[ -z $p ]]
+then
+    echo "Project not set" 2>&1
+    exit 1
+fi
+
+if ! cd $p
+then
+   exit 1
+fi
+
+while [[ $# -gt 0 ]]
+do
+  cmd=$1
+  shift
+  case $cmd in
+    build)
+      docker/build-all-docker.sh 
+      ;;
+
+    down)
+      docker-compose down $*
+      ;;
+
+    ""|up)
+
+      # docker ps | grep signals > /tmp/docker-ps$$
+      # if [[ -s /tmp/docker-ps$$ ]]
+      # then
+      #    echo 'Signals already running.' 1>&2
+      #    cat /tmp/docker-ps$$
+      #    rm /tmp/docker-ps$$
+      #    exit 1
+      # fi
+      # rm /tmp/docker-ps$$
+
+      docker-compose  up -d $* 
+      ;;
+
+    ui-test)
+       cd $p/qa/tests/e2etest && yarn && yarn build &&  protractor protractor.build.conf.js --baseUrl=http://localhost:8000 --specs='specs/*/*.smoke.spec.js'
+       ;;
+      
+    restart|rebuild)
+
+        if [[ $1 == -v ]]
+        then
+            signals down $*
+            set --
+        fi
+        signals build
+        signals up
+        ;;
+
+    serve-dev)
+      cd $p/src/clients/signals || exit 1
+      yarn
+      yarn run serve-dev
+      ;;
+
+    *)
+      echo "No such command: ${cmd}" 2>&1 
+      exit 1
+      ;;
+  esac
+done

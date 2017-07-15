@@ -1,0 +1,7 @@
+#! /usr/bin/python
+
+import sys
+
+print "{:,}".format(int(sys.argv[1]))
+
+
