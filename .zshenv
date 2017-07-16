@@ -11,6 +11,8 @@ set -o extendedglob
 fpath=(~/.zfuncs $fpath)
 autoload -U $( cd ~/.zfuncs && echo ^*.zwc )
 
+autoload -U colors && colors
+
 # enable git completions
 autoload -U compinit && compinit
 
@@ -18,6 +20,8 @@ compdef _cd_try_without_cdpath cd pushd
 
 compctl -K _g_comp g
 
+
+[[ -f /usr/local/share/zsh/site-functions/_awless ]] && source /usr/local/share/zsh/site-functions/_awless
 
 [[ -n $EMACS ]] && unsetopt zle
 
@@ -58,8 +62,9 @@ function precmd
   fi
   
   # PS1=%B${GIT_SUMMARY}%1~\ %(1j.%j.)%(!.#.\$)\ %b
-  PS1=%B${GIT_SUMMARY}${dirprompt}\ %(1j.%j.)%(!.#.\$)\ %b
-
+  # PS1=%B${GIT_SUMMARY}${dirprompt}\ %(1j.%j.)%(!.#.\$)\ %b
+  # PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
+  PS1="%{$fg[blue]%}${GIT_SUMMARY}%{$reset_color%}%{$fg[yellow]%}${dirprompt}%{$reset_color%} %(1j.%j.)%(!.#.\$)%{$reset_color%} "
 
   type terminal_title > /dev/null 2>&1 && terminal_title ${HOST}:$( basename $PWD )
 }

@@ -20,47 +20,30 @@
 
 (setq load-path (append load-path (list "~/elisp" ) ))
 (setq inhibit-startup-message t)
-(setq default-tab-width 4)
+(setq default-tab-width 2)
 (setq column-number-mode t)
 (menu-bar-mode)
 
+(load-theme 'twilight t)
+(set-face-foreground 'minibuffer-prompt "white")
 
-(require 'color-theme)
- (eval-after-load "color-theme"
-   '(progn
-      (color-theme-initialize)
-;      (color-theme-emacs-nw)
-;      (color-theme-lethe)
-      (color-theme-midnight)
-;      (color-theme-ld-dark)
-;      (color-theme-dark-laptop)
-))
+;; (require 'color-theme)
+;; (eval-after-load "color-theme"
+;;    '(progn
+;;       (color-theme-initialize)
+;; ;      (color-theme-clarity)
+;; ;      (color-theme-ld-dark)
+;;       (color-theme-dark-laptop)
+;; ;      (color-theme-hober)
+;; ;      (color-theme-midnight)
+;;       (set-face-foreground 'minibuffer-prompt "white")
+;; ))
 
 
-;; (custom-set-faces
-;;   ;; custom-set-faces was added by Custom.
-;;   ;; If you edit it by hand, you could mess it up, so be careful.
-;;   ;; Your init file should contain only one such instance.
-;;   ;; If there is more than one, they won't work right.
-;;  '(font-lock-builtin-face ((((class color) (min-colors 8)) (:foreground "blue"))))
-;;  '(font-lock-comment-delimiter-face ((default (:inherit font-lock-comment-face)) (((class color) (min-colors 8) (background light)) nil)))
-;;  '(font-lock-comment-face ((((class color) (min-colors 8) (background light)) (:foreground "black"))))
-;;  '(font-lock-constant-face ((((class color) (min-colors 8)) nil)))
-;;  '(font-lock-function-name-face ((((class color) (min-colors 8)) (:foreground "blue"))))
-;;  '(font-lock-keyword-face ((((class color) (min-colors 8)) (:foreground "black"))))
-;;  '(font-lock-preprocessor-face ((t nil)))
-;;  '(font-lock-string-face ((((class color) (min-colors 8)) (:foreground "green"))))
-;;  '(font-lock-type-face ((((class color) (min-colors 8)) nil)))
-;;  '(font-lock-variable-name-face ((((class color) (min-colors 8)) nil)))
-;;  '(font-lock-warning-face ((((class color) (min-colors 8)) (:foreground "black"))))
-;;  '(link ((((class color) (background light)) (:foreground "cyan" :underline t))))
-;;  '(minibuffer-prompt ((t nil))))
 
 
 (put 'narrow-to-region 'disabled nil)
 (autoload 'tt-mode "tt-mode")
-(autoload 'ruby-mode "ruby-mode")
-(autoload 'haml-mode "haml-mode")
 ; (autoload 'color-theme-solarized-light "color-theme-solarized-light")
 ; (autoload 'color-theme-solarized-dark "color-theme-solarized-dark")
 
@@ -153,7 +136,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("8659c305d48242dc8558a015fcd475584b53be2ec5fdb469ed12d46bac16c11a" "0777cfc5345e1018a8a20506e791fb49f22b3999270456952a6675b0e05fc9e1" "588a126bb2602528f1b61ca533e86baa6c2985225cccfa6caf63efa54d95a544" "d7ad8092aa1b790f780e2e216610a5fd76960ea586b2ded178d3290030754e89" "52974e923c79ee2e5de05b5f60950f20b25ed0a1929df7f402f59dd6db7d511f" "52c3d86abcc95f3a7a3566c15834b09caee2bb3093cf9d53d9eab61f925326c6" "58c7e88517136072f383afef93fe1eeb9c12de37398c4f95c27f363a2cc41fcd" "7dad2be7d806486305d7d3afe6b53a0c882cf651e183ed1ffe6dfb0745dc80f6" default))))
+    ("03ea866815fe82c4736611acafef3c90519d15cd3d465d8f146ebfa3a293b663" "8659c305d48242dc8558a015fcd475584b53be2ec5fdb469ed12d46bac16c11a" "0777cfc5345e1018a8a20506e791fb49f22b3999270456952a6675b0e05fc9e1" "588a126bb2602528f1b61ca533e86baa6c2985225cccfa6caf63efa54d95a544" "d7ad8092aa1b790f780e2e216610a5fd76960ea586b2ded178d3290030754e89" "52974e923c79ee2e5de05b5f60950f20b25ed0a1929df7f402f59dd6db7d511f" "52c3d86abcc95f3a7a3566c15834b09caee2bb3093cf9d53d9eab61f925326c6" "58c7e88517136072f383afef93fe1eeb9c12de37398c4f95c27f363a2cc41fcd" "7dad2be7d806486305d7d3afe6b53a0c882cf651e183ed1ffe6dfb0745dc80f6" default))))
 
 (put 'downcase-region 'disabled nil)
 
@@ -229,3 +212,4 @@ from true window top and bottom."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'set-goal-column 'disabled nil)

@@ -22,8 +22,20 @@ function g ()
     export ES_NODES=http://es-tunnel.pkidev.net:10001
 
     local project=$1
+    local yes_no
 
-
+    if [[ ! -d ~/p/${project} ]]
+    then
+      echo -n "create ${project}? "
+      read YES_NO
+      if [[ $YES_NO = y ]]
+      then
+        mkdir ~/p/${project}
+      else
+        return
+      fi
+    fi
+    
     if [[ ! ${project} =~ .*/.* && -d ~/p/${project} ]]
     then 
         # remove old project paths from path
@@ -36,6 +48,7 @@ function g ()
         append-to-path ${p}/sql
         append-to-path ${p}/bin
         append-to-path ${p}/qa/tools
+        append-to-path ${p}/qa/tools/import-tools
         export SIGNALS_ROOT_DIR; SIGNALS_ROOT_DIR=${p}
         cd ~/p/${project}
     else 

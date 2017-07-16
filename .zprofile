@@ -69,11 +69,6 @@ function setup-ssh
 }
 
 case $( hostname -s ) in
-    dv)  # Signals host
-        setup-ssh ~/.ssh/{dansmith-pki-github-id_rsa_m,github-dansmithhome_e}
-        ;;
-
-
     Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
         setup-ssh  ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
 	    ;;
