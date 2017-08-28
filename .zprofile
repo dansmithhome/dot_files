@@ -32,7 +32,7 @@ export CLICOLOR=1
 export EDITOR=emacs
 export FIGNORE=\~:.o:.svn:DS_Store
 export GREP_OPTIONS='--color=auto --directories=skip'
-export GOPATH=~/p/go
+export GOPATH=~/p/golang
 export HISTFILE=~/.zsh-history
 export HISTSIZE=10000
 export HOST=$(hostname -s)
@@ -101,24 +101,11 @@ esac
 prepend-to-path /usr/local/go/bin
 
 
-# Chef 
-prepend-to-path /opt/chefdk/embedded/bin
-prepend-to-path /opt/chefdk/bin
-prepend-to-path ~/.chefdk/gem/ruby/2.1.0/bin
-
-
-#
-[[ -d ~/p/ref-chef ]] && export SIGNALS_CHEF_ROOT=~/p/ref-chef
-
-
-prepend-to-path /Applications/Anaconda/anaconda/bin
 prepend-to-path /usr/local/bin
 prepend-to-path /usr/local/opt
 prepend-to-path /usr/local/sbin
+append-to-path  ~/p/go/bin
 append-to-path  /usr/local/git/bin
-append-to-path  ~/.rvm/bin 
-append-to-path  /usr/local/heroku/bin
-append-to-path "/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
 # source-if-exists ${BASH_ENV}
 source-if-exists ${DEV_HELPERS_FILE}
