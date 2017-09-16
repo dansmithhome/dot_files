@@ -14,7 +14,8 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
-
+.Trash
+.cpan
 
 
 
@@ -30,3 +31,53 @@ Thumbs.db
 .zsh-history
 .zshrc
 p
+.IntelliJIdea14
+.ScanSnap
+.Trash
+.adobe
+.android
+.appledoc-old
+.atom
+.awless
+.config
+.cpan
+.cpanm
+.cups
+.dropbox
+.emacs.d
+.gem
+.heroku
+.iTerm2-color-schemes
+.idea-build
+.idlerc
+.ivy2
+.keychain
+.local
+.ncftp
+.node-gyp
+.npm
+.pia_manager
+.reincubate
+.rvm
+.sbt
+.soapuios
+.ssh
+.subversion
+.vnc
+.vscode
+Applications*
+Downloads
+Documents
+Music
+Movies
+Pictures
+Desktop
+Dropbox
+Google Drive
+Library
+IdeaProjects*
+Projects
+Reference Library
+solarized
+iCloud Drive*
+The Art of Learning
