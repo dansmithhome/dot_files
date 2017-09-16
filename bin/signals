@@ -27,6 +27,7 @@ do
 
     down)
       docker-compose down $*
+      set --
       ;;
 
     ""|up)
@@ -42,6 +43,7 @@ do
       # rm /tmp/docker-ps$$
 
       docker-compose  up -d $* 
+      set --
       ;;
 
     ui-test)
@@ -58,6 +60,11 @@ do
         signals build
         signals up
         ;;
+
+    kill)    # Kill all docker containers
+        sudo docker stop $(sudo docker ps -a -q)
+        ;;
+
 
     serve-dev)
       cd $p/src/clients/signals || exit 1
