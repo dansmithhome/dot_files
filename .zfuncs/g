@@ -48,7 +48,7 @@ function g ()
         append-to-path ${p}/qa/tools
         append-to-path ${p}/qa/tools/import-tools
         export SIGNALS_ROOT_DIR; SIGNALS_ROOT_DIR=${p}
-        GOPATH=$HOME/p/golang:$p/go
+        export GOPATH=$HOME/p/golang:$p/go
         cd ~/p/${project}
     else 
          if [[ ${p} == '' ]]

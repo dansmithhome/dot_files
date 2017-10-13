@@ -66,6 +66,10 @@ do
         ;;
 
 
+    logs)
+        docker-compose logs signals-$*
+        set --
+        ;;
     serve-dev)
       cd $p/src/clients/signals || exit 1
       yarn

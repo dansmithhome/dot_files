@@ -6,5 +6,5 @@ m3=$(date -v +2m "+%m %Y")
 
 for i in 1 2 3 4 5 6 7
 do
-cal $m1 | awk 'NR=='$i'{printf("%-24s", $0)}'; cal $m2 | awk 'NR=='$i'{printf("%-24s", $0)}'; cal $m3 | awk 'NR=='$i'{printf("%-24s\n", $0)}'
+    cal -h $m1 | awk 'NR=='$i'{printf("%-24s", $0)}'; cal $m2 | awk 'NR=='$i'{printf("%-24s", $0)}'; cal $m3 | awk 'NR=='$i'{printf("%-24s\n", $0)}'
 done

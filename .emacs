@@ -1,3 +1,4 @@
+(add-to-list 'default-frame-alist '(tty-color-mode  . -1))     ; b&w terminal mode
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 (require 'package)
@@ -24,7 +25,7 @@
 (setq column-number-mode t)
 (menu-bar-mode)
 
-(load-theme 'twilight t)
+;(load-theme 'inkpot t)
 (set-face-foreground 'minibuffer-prompt "white")
 
 ;; (require 'color-theme)
@@ -136,7 +137,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("03ea866815fe82c4736611acafef3c90519d15cd3d465d8f146ebfa3a293b663" "8659c305d48242dc8558a015fcd475584b53be2ec5fdb469ed12d46bac16c11a" "0777cfc5345e1018a8a20506e791fb49f22b3999270456952a6675b0e05fc9e1" "588a126bb2602528f1b61ca533e86baa6c2985225cccfa6caf63efa54d95a544" "d7ad8092aa1b790f780e2e216610a5fd76960ea586b2ded178d3290030754e89" "52974e923c79ee2e5de05b5f60950f20b25ed0a1929df7f402f59dd6db7d511f" "52c3d86abcc95f3a7a3566c15834b09caee2bb3093cf9d53d9eab61f925326c6" "58c7e88517136072f383afef93fe1eeb9c12de37398c4f95c27f363a2cc41fcd" "7dad2be7d806486305d7d3afe6b53a0c882cf651e183ed1ffe6dfb0745dc80f6" default))))
+    ("1bd383f15ee7345c270b82c5e41554754b2a56e14c2ddaa2127c3590d0303b95" "03ea866815fe82c4736611acafef3c90519d15cd3d465d8f146ebfa3a293b663" "8659c305d48242dc8558a015fcd475584b53be2ec5fdb469ed12d46bac16c11a" "0777cfc5345e1018a8a20506e791fb49f22b3999270456952a6675b0e05fc9e1" "588a126bb2602528f1b61ca533e86baa6c2985225cccfa6caf63efa54d95a544" "d7ad8092aa1b790f780e2e216610a5fd76960ea586b2ded178d3290030754e89" "52974e923c79ee2e5de05b5f60950f20b25ed0a1929df7f402f59dd6db7d511f" "52c3d86abcc95f3a7a3566c15834b09caee2bb3093cf9d53d9eab61f925326c6" "58c7e88517136072f383afef93fe1eeb9c12de37398c4f95c27f363a2cc41fcd" "7dad2be7d806486305d7d3afe6b53a0c882cf651e183ed1ffe6dfb0745dc80f6" default)))
+ '(package-selected-packages (quote (rebecca-theme darcula-theme atom-one-dark-theme))))
 
 (put 'downcase-region 'disabled nil)
 
