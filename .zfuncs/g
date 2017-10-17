@@ -43,7 +43,7 @@ function g ()
         [[ -n ${p} ]] && CDPATH=$( rm-pattern-from-path CDPATH ${p} )
 
         export p; p=~/p/${project}
-        cdpath+=(${p} ${p}/src)
+        cdpath+=(${p} ${p}/src ${p}/go/src)
         append-to-path ${p}/tools
         append-to-path ${p}/qa/tools
         append-to-path ${p}/qa/tools/import-tools
