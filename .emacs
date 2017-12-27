@@ -1,10 +1,16 @@
-(add-to-list 'default-frame-alist '(tty-color-mode  . -1))     ; b&w terminal mode
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (add-to-list 'default-frame-alist '(tty-color-mode  . -1))     ; b&w terminal mode
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (if (boundp 'custom-theme-load-path)
+;;     (add-to-list 'custom-theme-load-path "~/.emacs.d/themes") 
+;;   nil)
 
-(require 'package)
-(add-to-list 'package-archives
-                          '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-(package-initialize)
+;; (require 'package)
+;; (add-to-list 'package-archives
+;;                           '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+;; (package-initialize)
+
+;; (load-theme 'twilight t)
+
 
 ; (toggle-truncate-lines)
 
@@ -214,4 +220,5 @@ from true window top and bottom."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
 (put 'set-goal-column 'disabled nil)

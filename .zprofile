@@ -106,7 +106,10 @@ prepend-to-path /usr/local/opt
 prepend-to-path /usr/local/sbin
 append-to-path  ~/p/go/bin
 append-to-path  /usr/local/git/bin
-append-to-path  ~/p/golang/bin
+for p in ${(ps.:.)GOPATH}
+do
+    append-to-path $p/bin
+done
 
 
 # source-if-exists ${BASH_ENV}
