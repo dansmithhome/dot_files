@@ -43,7 +43,10 @@ export SAVEHIST=9999999
 export SHELL=/bin/bash
 export VISUAL=emacs
 
-export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine)
+if ! test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine 2> /dev/null
+then
+    export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine)
+fi
 
 
 
@@ -73,7 +76,7 @@ case $( hostname -s ) in
         setup-ssh  ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
 	    ;;
 
-    Bosco|dan-macbook-pro)   # laptop
+    Talma|Bosco|dan-macbook-pro)   # laptop
         setup-ssh ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
         ;;
 
