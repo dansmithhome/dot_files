@@ -1,0 +1,18 @@
+function pg.server()
+{
+  local PG_VERSION=9.4
+
+  local PG_DATA_DIR=/Library/PostgreSQL/${PG_VERSION}/data
+  local PG_BIN_DIR=/Library/PostgreSQL/${PG_VERSION}/bin
+
+  if [[ ! -d ${PG_DATA_DIR} ]]
+  then
+    echo "${PG_DATA_DIR}: no such file"
+    return 1
+  fi
+
+  export PGDATA=${PG_DATA_DIR}
+  append-to-path ${PG_BIN_DIR}
+  sudo -u postgres pg_ctl -D ${PG_DATA_DIR} $*
+}
+
