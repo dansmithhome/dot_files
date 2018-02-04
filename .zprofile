@@ -74,7 +74,7 @@ function setup-ssh
 case $( hostname -s ) in
 
     Talma|Bosco|dan-macbook-pro)   # personal laptop
-        setup-ssh ~/.ssh/{carc_q,github-dansmithhome_e}
+        setup-ssh ~/.ssh/{carc_q,bitbucket-dansmithhome_e}
         ;;
 
     dev|askalexander|conjuringarts) 
