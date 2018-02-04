@@ -109,3 +109,6 @@ screen -ls | grep Detached
 
 # added by Anaconda2 2.5.0 installer
 export PATH="/Applications/Anaconda/anaconda/bin:$PATH"
+
+# added by Anaconda3 5.0.1 installer
+export PATH="/Users/dansmith/anaconda3/bin:$PATH"

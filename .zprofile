@@ -72,12 +72,9 @@ function setup-ssh
 }
 
 case $( hostname -s ) in
-    Dans-MBP|dans-mbp|Dans-MacBook-Pro|higgins)  # PKI laptop
-        setup-ssh  ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
-	    ;;
 
-    Talma|Bosco|dan-macbook-pro)   # laptop
-        setup-ssh ~/.ssh/{carc_q,github-dansmithhome_e,github-dansmith-pki_m}
+    Talma|Bosco|dan-macbook-pro)   # personal laptop
+        setup-ssh ~/.ssh/{carc_q,github-dansmithhome_e}
         ;;
 
     dev|askalexander|conjuringarts) 
@@ -109,10 +106,12 @@ prepend-to-path /usr/local/opt
 prepend-to-path /usr/local/sbin
 append-to-path  ~/p/go/bin
 append-to-path  /usr/local/git/bin
-for p in ${(ps.:.)GOPATH}
+append-to-path  /usr/local/opt/scala/bin
+for godirs in ${(ps.:.)GOPATH}
 do
-    append-to-path $p/bin
+    append-to-path ${godirs}/bin
 done
+unset godirs
 
 
 # source-if-exists ${BASH_ENV}
