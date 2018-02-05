@@ -48,14 +48,26 @@ then
     export JAVA_HOME;  JAVA_HOME=$(test -x /usr/libexec/java_home && /usr/libexec/java_home --task CommandLine)
 fi
 
-
-
-
 function setup-ssh
 {
     # Share a single ssh-agent per machine.
     # usage: setup_ssh ssh-file ssh-file ...
 
+    if [[ -n ${SSH_AUTH_SOCK} ]]
+    then
+        local file files_to_add
+        declare -a files_to_add
+        for file in $*
+        do
+            ssh-add -l | awk '$3 == "'${file}'" { exit 3}'
+            if [[ $? -eq 0 ]]; then
+               files_to_add+=${file}
+            fi
+        done
+        [[ -n ${files_to_add} ]] && ssh-add ${files_to_add}
+        return
+    fi
+    
     export SSH_AGENT_PID_FILE=~/.ssh-agent-pid-$(hostname -s)
 
     if [[ ! -f ${SSH_AGENT_PID_FILE} ]] || ! pgrep -q -F ${SSH_AGENT_PID_FILE} ssh-agent
@@ -74,17 +86,17 @@ function setup-ssh
 case $( hostname -s ) in
 
     Talma|Bosco|dan-macbook-pro)   # personal laptop
-        setup-ssh ~/.ssh/{carc_q,bitbucket-dansmithhome_e}
+        setup-ssh ~/.ssh/{carc_q,bitbucket-thedimsnail_e,github-dansmithhome_e}
         ;;
 
     dev|askalexander|conjuringarts) 
         export ALEX_LIB=/mnt/www/sites/alex/lib
         export DEV_HELPERS_FILE=~/.bashrc-alex-helpers
- 	    export EC2_HOME=~/ec2-api-tools-1.3-36506
-	    export EC2_PRIVATE_KEY=~/.ec2/pk-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
-	    export EC2_CERT=~/.ec2/cert-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
-	    append-to-path ${EC2_HOME}/bin
-	    ;;
+ 	      export EC2_HOME=~/ec2-api-tools-1.3-36506
+	      export EC2_PRIVATE_KEY=~/.ec2/pk-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
+	      export EC2_CERT=~/.ec2/cert-NCS6VCSRTWMVTHCIQM2LMAEA6BE2HJBU.pem
+	      append-to-path ${EC2_HOME}/bin
+	      ;;
 
     *)
         echo .zshenv: Unknown host. Cannot customize host environment.
