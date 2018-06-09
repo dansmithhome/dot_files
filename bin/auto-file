@@ -33,11 +33,6 @@ case $(basename $DIRNAME) in
       DIGIT=3
       ARCHIVE_SUBDIR=Media
       ;;
-    Signals)
-      ALPHA=P
-      DIGIT=3
-      ARCHIVE_SUBDIR=Signals
-      ;;
     *)
       ALPHA=U
       DIGIT=3

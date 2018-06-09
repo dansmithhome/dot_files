@@ -85,8 +85,8 @@ function setup-ssh
 
 case $( hostname -s ) in
 
-    Talma|Bosco|dan-macbook-pro)   # personal laptop
-        setup-ssh ~/.ssh/{carc_q,bitbucket-thedimsnail_e,github-dansmithhome_e}
+    lt-*|Talma|Bosco|dan-macbook-pro)   # personal laptop
+        setup-ssh ~/.ssh/{github-dansmithhome_e,github-dsmith-localytics}
         ;;
 
     dev|askalexander|conjuringarts) 
@@ -129,7 +129,7 @@ unset godirs
 # source-if-exists ${BASH_ENV}
 source-if-exists ${DEV_HELPERS_FILE}
 source-if-exists ~/.rvm/scripts/rvm
-
+source-if-exists ~/.config/exercism/exercism_completion.zsh 
 
 # show any detached screen sessions
 screen -ls | grep Detached
