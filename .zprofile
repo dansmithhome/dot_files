@@ -1,4 +1,3 @@
-#
 #  Set host-specific values
 #
 
@@ -86,7 +85,7 @@ function setup-ssh
 case $( hostname -s ) in
 
     lt-*|Talma|Bosco|dan-macbook-pro)   # personal laptop
-        setup-ssh ~/.ssh/{github-dansmithhome_e,github-dsmith-localytics}
+        setup-ssh ~/.ssh/github-dansmithhome_e
         ;;
 
     dev|askalexander|conjuringarts) 
@@ -113,12 +112,15 @@ esac
 prepend-to-path /usr/local/go/bin
 
 
+prepend-to-path ~/anaconda2/bin
 prepend-to-path /usr/local/bin
 prepend-to-path /usr/local/opt
 prepend-to-path /usr/local/sbin
 append-to-path  ~/p/go/bin
 append-to-path  /usr/local/git/bin
 append-to-path  /usr/local/opt/scala/bin
+
+
 for godirs in ${(ps.:.)GOPATH}
 do
     append-to-path ${godirs}/bin
@@ -130,6 +132,7 @@ unset godirs
 source-if-exists ${DEV_HELPERS_FILE}
 source-if-exists ~/.rvm/scripts/rvm
 source-if-exists ~/.config/exercism/exercism_completion.zsh 
+source-if-exists ~/.cargo/env
 
 # show any detached screen sessions
 screen -ls | grep Detached
