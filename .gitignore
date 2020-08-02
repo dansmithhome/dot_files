@@ -18,6 +18,7 @@ Thumbs.db
 .cpan
 
 
+*.tar
 .zcompdump*
 .vscode/extensions/**
 .emacs.d/elpa*
