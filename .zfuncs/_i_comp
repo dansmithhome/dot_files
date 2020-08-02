@@ -1,0 +1,4 @@
+function _i_comp
+{
+    reply=( `(cd $HOME/i ; find . -type d -depth 1 -prune -name "${PREFIX}*" | sed 's;^./;;' )` )
+}

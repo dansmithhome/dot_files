@@ -18,7 +18,9 @@ Thumbs.db
 .cpan
 
 
-
+.zcompdump*
+.vscode/extensions/**
+.emacs.d/elpa*
 
 .bash_history
 .git-completions.bash
@@ -28,7 +30,7 @@ Thumbs.db
 .mysql_history
 .ssh
 .zhistory
-.zsh-history
+.zsh_history
 .zshrc
 p
 .IntelliJIdea14
@@ -81,3 +83,63 @@ Reference Library
 solarized
 iCloud Drive*
 The Art of Learning
+node_modules
+.aws-backup/
+.aws/
+.cargo/
+.conda/
+.docker/
+.dvdcss/
+.exercism.json
+.httpie/
+.ipynb_checkpoints/
+.ipython/
+.jupyter/
+.lesshst
+.multirust
+.mylogin.cnf
+.node_repl_history
+.npmrc
+.npmrc_orig
+.oh-my-zsh/
+.pgadmin/
+.pia_manager_crash.log
+.pip/
+.proxyman/
+.pyenv/
+.pypirc
+.python_history
+.rustup/
+.shell.pre-oh-my-zsh
+.ssh-agent-pid-Talma
+.tooling/
+.viminfo
+.vscode-remote-workspace/
+.yarnrc
+.yarnrc_orig
+.zsh-history
+Dan Smith resume 2017.pdf
+Keelan-class/
+My Music/
+Public/
+Smith Family Finances.bank7/
+Spotify/
+The Art of Learning.tar
+Zoom.popclipext/
+anki-backup.tar
+bin/diff-so-fancy
+bin/shadow
+chapter_2/
+dan.tar
+define.py
+desktop-files.tar
+desktop-files/
+dot-files.tar
+exercism/
+flatten/
+iterm-preferences/
+members
+new Paul Kalkbrenner - live at Lowlands 2019 2.m4a
+ssh/
+tmp/
+x

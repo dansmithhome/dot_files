@@ -1,4 +1,5 @@
 function _g_comp
 {
-reply=( `cd ~/p; echo $PREFIX*/ | sed 's;/;;g'` )
+    reply=( `(cd $HOME/p ; find . -type d -depth 1 -prune -name "${PREFIX}*" | sed 's;^./;;' )` )
+
 }

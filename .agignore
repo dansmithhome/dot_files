@@ -7,6 +7,7 @@
 *.js.map
 *.css.map
 datasets/*
+~/.emacs.d/elpa/*
 yarn.lock
 *.svg
 *.csv

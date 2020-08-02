@@ -1,0 +1,53 @@
+# Usage: i [project]
+#        i [directory]
+# 
+
+function i ()
+{
+
+    if [[ $# == 0 ]]
+    then
+       if [[ -n ${ip} ]]
+       then
+           cd ${ip}
+       else
+           echo no project
+       fi
+       return
+    fi
+
+    local iproject=$1
+    local yes_no
+
+    if [[ ! -d ~/i/${iproject} ]]
+    then
+      echo -n "create ${iproject}? "
+      read YES_NO
+      if [[ $YES_NO = y ]]
+      then
+        mkdir ~/i/${iproject}
+      else
+        return
+      fi
+    fi
+    
+    if [[ ! ${iproject} =~ .*/.* && -d ~/i/${iproject} ]]
+    then 
+        # remove old project paths from path
+        [[ -n ${ip} ]] && PATH=$(   rm-pattern-from-path PATH   ${ip} )
+        [[ -n ${ip} ]] && CDPATH=$( rm-pattern-from-path CDPATH ${ip} )
+
+        export ip; ip=~/i/${iproject}
+        cdpath+=(${ip} ${ip}/src ${ip}/go/src)
+        export GOPATH=$HOME/i/golang:$p/go
+        cd ${ip}
+    else 
+         if [[ ${ip} == '' ]]
+         then
+                echo 'No project defined.  Usage: i [project]'
+                return
+         fi
+         cd ${ip}/${1}
+         return
+    fi
+}

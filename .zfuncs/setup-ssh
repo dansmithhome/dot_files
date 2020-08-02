@@ -1,0 +1,34 @@
+function setup-ssh
+{
+    # Share a single ssh-agent per machine.
+    # usage: setup_ssh ssh-file ssh-file ...
+
+    if [[ -n ${SSH_AUTH_SOCK} ]]
+    then
+        local file files_to_add
+        declare -a files_to_add
+        for file in $*
+        do
+            ssh-add -l | awk '$3 == "'${file}'" { exit 3}'
+            if [[ $? -eq 0 ]]; then
+               files_to_add+=${file}
+            fi
+        done
+        [[ -n ${files_to_add} ]] && ssh-add ${files_to_add}
+        return
+    fi
+    
+    export SSH_AGENT_PID_FILE=~/.ssh-agent-pid-$(hostname -s)
+
+    if [[ ! -f ${SSH_AGENT_PID_FILE} ]] || ! pgrep -q -F ${SSH_AGENT_PID_FILE} ssh-agent
+    then
+        # Create new ssh agent
+        eval $( ssh-agent ) > /dev/null
+        echo ${SSH_AGENT_PID} > ${SSH_AGENT_PID_FILE}
+        [[ -n $* ]] && ssh-add $*
+
+    else
+        # Use existing ssh agent
+        export SSH_AGENT_PID=$(< ${SSH_AGENT_PID_FILE} )
+    fi
+}

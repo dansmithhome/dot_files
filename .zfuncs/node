@@ -1,5 +1,0 @@
-
-function node
-{
-    NODE_NO_READLINE=1 rlwrap -p red node $@
-}

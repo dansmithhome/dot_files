@@ -1,0 +1,4 @@
+function _i_comp
+{
+reply=( `cd ~/ip; echo $PREFIX*/ | sed 's;/;;g'` )
+}

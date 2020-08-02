@@ -1,7 +1,0 @@
-function sync-tags
-{
-    # Delete all local tags and sync with remote depot
-    # usage: sync-tags
-    git tag | xargs -n1 git tag -d && git fetch --tags
-}
-    

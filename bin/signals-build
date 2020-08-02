@@ -1,4 +1,0 @@
-#! /bin/bash
-
-
-( cd $p || exit 1; docker/build-all-docker.sh )

@@ -1,4 +1,0 @@
-function ant ()
-{
-    command ant -f ${p}/build.xml  $*
-}
